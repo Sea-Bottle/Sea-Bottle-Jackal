@@ -32,4 +32,4 @@ if __name__ == "__main__":
             "Usage – python3 jackalify.py input_image_path output_video_path",
         )
 
-    jackalify(*sys.argv[1], *sys.argv[2])
+    jackalify(sys.argv[1], sys.argv[2])
