@@ -1,3 +1,6 @@
+"""
+Реализация алгоритма seam carving
+"""
 from typing import Optional
 from typing import Tuple
 
@@ -7,12 +10,18 @@ import numpy as np
 def horizontal_shrink(
         image: np.ndarray, derivative: np.ndarray, mask: np.ndarray,
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """
+    Горизонтальное сжатие изображения
+    """
     return shrink(image, derivative, mask)
 
 
 def vertical_shrink(
         image: np.ndarray, derivative: np.ndarray, mask: np.ndarray,
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """
+    Вертикальное сжатие изображения
+    """
     image, mask, seam = shrink(
         np.transpose(image, axes=(1, 0, 2)),
         np.transpose(derivative),
@@ -25,28 +34,10 @@ def vertical_shrink(
     )
 
 
-def horizontal_expand(
-        image: np.ndarray, derivative: np.ndarray, mask: np.ndarray,
-) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
-    return expand(image, derivative, mask)
-
-
-def vertical_expand(
-        image: np.ndarray, derivative: np.ndarray, mask: np.ndarray,
-) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
-    image, mask, seam = expand(
-        np.transpose(image, axes=(1, 0, 2)),
-        np.transpose(derivative),
-        np.transpose(mask),
-    )
-    return (
-        np.transpose(image, axes=(1, 0, 2)),
-        np.transpose(mask),
-        np.transpose(seam),
-    )
-
-
 def compute_seam(derivative: np.ndarray) -> np.ndarray:
+    """
+    Вычисление шва с наименьшей энергией
+    """
     energy = np.zeros(derivative.shape)
     energy[0] = derivative[0]
 
@@ -103,6 +94,9 @@ def compute_seam(derivative: np.ndarray) -> np.ndarray:
 def shrink(
         image: np.ndarray, derivative: np.ndarray, mask: np.ndarray,
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """
+    Сжатие изображения
+    """
     seam = compute_seam(derivative)
 
     red = np.ma.compressed(np.ma.MaskedArray(image[:, :, 0], mask=seam))
@@ -120,51 +114,18 @@ def shrink(
     return image, mask, seam
 
 
-def expand(
-        image: np.ndarray, derivative: np.ndarray, mask: np.ndarray,
-) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
-    seam = compute_seam(derivative)
-
-    red = np.zeros((image.shape[0], image.shape[1] + 1))
-    green = np.zeros((image.shape[0], image.shape[1] + 1))
-    blue = np.zeros((image.shape[0], image.shape[1] + 1))
-    expanded_mask = np.zeros((image.shape[0], image.shape[1] + 1))
-
-    for height in range(image.shape[0]):
-        index = np.argmax(seam[height])
-
-        red[height, : index + 1] = image[height, : index + 1, 0]
-        red[height, index + 2 :] = image[height, index + 1 :, 0]
-        red[height, index + 1] = red[height, index]
-
-        green[height, : index + 1] = image[height, : index + 1, 1]
-        green[height, index + 2 :] = image[height, index + 1 :, 1]
-        green[height, index + 1] = green[height, index]
-
-        blue[height, : index + 1] = image[height, : index + 1, 2]
-        blue[height, index + 2 :] = image[height, index + 1 :, 2]
-        blue[height, index + 1] = blue[height, index]
-
-        expanded_mask[height, : index + 1] = mask[height, : index + 1]
-        expanded_mask[height, index + 2 :] = mask[height, index + 1 :]
-        expanded_mask[height, index + 1] = expanded_mask[height, index]
-
-    image = np.dstack((red, green, blue))
-
-    return image, expanded_mask, seam
-
-
 FUNCTIONS = {
     'horizontal shrink': horizontal_shrink,
     'vertical shrink': vertical_shrink,
-    'horizontal expand': horizontal_expand,
-    'vertical expand': vertical_expand,
 }
 
 
 def seam_carve(
         image: np.ndarray, action: str, mask: Optional[np.ndarray] = None,
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """
+    Основная функция алгоритма seam carving
+    """
     if mask is None:
         mask = np.zeros(image.shape[:-1])
 
