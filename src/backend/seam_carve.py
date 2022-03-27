@@ -49,24 +49,21 @@ def compute_seam(derivative: np.ndarray) -> np.ndarray:
                         energy[height - 1, width - 1],
                         energy[height - 1, width],
                         energy[height - 1, width + 1],
-                    )
-                    + derivative[height, width]
+                    ) + derivative[height, width]
                 )
             elif width != 0 and width == energy.shape[1] - 1:
                 energy[height, width] = (
                     min(
                         energy[height - 1, width - 1],
                         energy[height - 1, width],
-                    )
-                    + derivative[height, width]
+                    ) + derivative[height, width]
                 )
             elif width == 0 and width != energy.shape[1] - 1:
                 energy[height, width] = (
                     min(
                         energy[height - 1, width],
                         energy[height - 1, width + 1],
-                    )
-                    + derivative[height, width]
+                    ) + derivative[height, width]
                 )
             else:
                 energy[height, width] = (
@@ -80,11 +77,11 @@ def compute_seam(derivative: np.ndarray) -> np.ndarray:
 
     for height in range(energy.shape[0] - 2, -1, -1):
         if index not in (0, energy.shape[1] - 1):
-            index += np.argmin(energy[height, index - 1 : index + 2]) - 1
+            index += np.argmin(energy[height, index - 1: index + 2]) - 1
         elif index != 0 and index == energy.shape[1] - 1:
-            index += np.argmin(energy[height, index - 1 : index + 1]) - 1
+            index += np.argmin(energy[height, index - 1: index + 1]) - 1
         elif index == 0 and index != energy.shape[1] - 1:
-            index += np.argmin(energy[height, index : index + 2])
+            index += np.argmin(energy[height, index: index + 2])
 
         seam[height, index] = True
 
@@ -129,11 +126,7 @@ def seam_carve(
     if mask is None:
         mask = np.zeros(image.shape[:-1])
 
-    brightness = (
-        image[:, :, 0] * 0.299
-        + image[:, :, 1] * 0.587
-        + image[:, :, 2] * 0.114
-    )
+    brightness = (image[:, :, 0] * 0.299 + image[:, :, 1] * 0.587 + image[:, :, 2] * 0.114)
 
     append_up = np.append(brightness[0][np.newaxis], brightness, axis=0)[:-1]
     append_down = np.append(brightness, brightness[-1][np.newaxis], axis=0)[1:]
