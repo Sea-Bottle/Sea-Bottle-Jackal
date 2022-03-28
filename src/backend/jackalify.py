@@ -1,6 +1,4 @@
-"""
-Обертка для получения видео с процессом искажения из изображения
-"""
+"""Обертка для получения видео с процессом искажения из изображения."""
 import sys
 
 from cv2 import cv2
@@ -9,10 +7,7 @@ from tqdm import tqdm
 
 
 def jackalify(image_path: str, video_path: str):
-    """
-    Применить алгоритм seam carving к изображению
-    и получить видео с процессом искажения
-    """
+    """Применить алгоритм seam carving к изображению и получить видео с процессом искажения."""
     image = cv2.imread(image_path)
     height, width, _ = image.shape
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")
