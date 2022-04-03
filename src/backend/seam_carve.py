@@ -36,7 +36,7 @@ def vertical_shrink(
 
 
 def compute_seam(derivative: np.ndarray) -> np.ndarray:
-    """Calculation of the seam with the lowest energy.
+    """Calculate the seam with the least energy.
 
     :param derivative: The module of the image derivative.
     :type derivative: np.ndarray
@@ -129,7 +129,7 @@ FUNCTIONS = {
 def seam_carve(
         image: np.ndarray, action: str,
 ) -> np.ndarray:
-    """The main function of the seam carving algorithm.
+    """Apply a seam carving algorithm.
 
     :param image: Input image.
     :type image: np.ndarray
