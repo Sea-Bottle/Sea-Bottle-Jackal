@@ -1,4 +1,4 @@
-"""Обертка для получения видео с процессом искажения из изображения."""
+"""A wrapper for getting a video with the distortion process from an image."""
 import sys
 
 from cv2 import cv2
@@ -7,11 +7,11 @@ from tqdm import tqdm
 
 
 def jackalify(image_path: str, video_path: str):
-    """Применить алгоритм seam carving к изображению и получить видео с процессом искажения.
+    """Apply the seam carving algorithm to the image and get a video with the distortion process.
 
-    :param image_path: Путь к входному изображению.
+    :param image_path: The path to the input image.
     :type image_path: str
-    :param video_path: Путь к выходному видео.
+    :param video_path: The path to the output video.
     :type video_path: str
     """
     image = cv2.imread(image_path)
