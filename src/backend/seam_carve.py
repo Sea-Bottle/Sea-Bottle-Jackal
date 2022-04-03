@@ -1,28 +1,48 @@
 """Реализация алгоритма seam carving."""
-from typing import Tuple
-
 import numpy as np
 
 
 def horizontal_shrink(
         image: np.ndarray, derivative: np.ndarray,
-) -> Tuple[np.ndarray, np.ndarray]:
-    """Горизонтальное сжатие изображения."""
+) -> np.ndarray:
+    """Горизонтальное сжатие изображения.
+
+    :param image: Входное изображение.
+    :type image: np.ndarray
+    :param derivative: Модуль производной изображения.
+    :type derivative: np.ndarray
+    :return: Выходное изображение.
+    :rtype: np.ndarray
+    """
     return shrink(image, derivative)
 
 
 def vertical_shrink(
         image: np.ndarray, derivative: np.ndarray,
-) -> Tuple[np.ndarray, np.ndarray]:
-    """Вертикальное сжатие изображения."""
-    image, seam = shrink(
+) -> np.ndarray:
+    """Вертикальное сжатие изображения.
+
+    :param image: Входное изображение.
+    :type image: np.ndarray
+    :param derivative: Модуль производной изображения.
+    :type derivative: np.ndarray
+    :return: Выходное изображение.
+    :rtype: np.ndarray
+    """
+    image = shrink(
         np.transpose(image, axes=(1, 0, 2)), np.transpose(derivative),
     )
-    return np.transpose(image, axes=(1, 0, 2)), np.transpose(seam)
+    return np.transpose(image, axes=(1, 0, 2))
 
 
 def compute_seam(derivative: np.ndarray) -> np.ndarray:
-    """Вычисление шва с наименьшей энергией."""
+    """Вычисление шва с наименьшей энергией.
+
+    :param derivative: Модуль производной изображения.
+    :type derivative: np.ndarray
+    :return: Булева маска изображения со швом, энергия которого минимальна.
+    :rtype: np.ndarray
+    """
     energy = np.zeros(derivative.shape)
     energy[0] = derivative[0]
 
@@ -75,8 +95,16 @@ def compute_seam(derivative: np.ndarray) -> np.ndarray:
 
 def shrink(
         image: np.ndarray, derivative: np.ndarray,
-) -> Tuple[np.ndarray, np.ndarray]:
-    """Сжатие изображения."""
+) -> np.ndarray:
+    """Сжатие изображения.
+
+    :param image: Входное изображение.
+    :type image: np.ndarray
+    :param derivative: Модуль производной изображения.
+    :type derivative: np.ndarray
+    :return: Выходное изображение.
+    :rtype: np.ndarray
+    """
     seam = compute_seam(derivative)
 
     red = np.ma.compressed(np.ma.MaskedArray(image[:, :, 0], mask=seam))
@@ -89,19 +117,27 @@ def shrink(
 
     image = np.dstack((red, green, blue))
 
-    return image, seam
+    return image
 
 
 FUNCTIONS = {
-    'horizontal shrink': horizontal_shrink,
-    'vertical shrink': vertical_shrink,
+    'horizontal': horizontal_shrink,
+    'vertical': vertical_shrink,
 }
 
 
 def seam_carve(
         image: np.ndarray, action: str,
-) -> Tuple[np.ndarray, np.ndarray]:
-    """Основная функция алгоритма seam carving."""
+) -> np.ndarray:
+    """Основная функция алгоритма seam carving.
+
+    :param image: Входное изображение.
+    :type image: np.ndarray
+    :param action: Направление сжатия изображения.
+    :type action: str
+    :return: Выходное изображение.
+    :rtype: np.ndarray
+    """
     brightness = (
         image[:, :, 0] * 0.299 + image[:, :, 1] * 0.587 + image[:, :, 2] * 0.114
     )

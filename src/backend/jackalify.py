@@ -7,7 +7,13 @@ from tqdm import tqdm
 
 
 def jackalify(image_path: str, video_path: str):
-    """Применить алгоритм seam carving к изображению и получить видео с процессом искажения."""
+    """Применить алгоритм seam carving к изображению и получить видео с процессом искажения.
+
+    :param image_path: Путь к входному изображению.
+    :type image_path: str
+    :param video_path: Путь к выходному видео.
+    :type video_path: str
+    """
     image = cv2.imread(image_path)
     image = cv2.resize(
         image,
@@ -21,8 +27,8 @@ def jackalify(image_path: str, video_path: str):
     video = cv2.VideoWriter(video_path, fourcc, 60, (width, height))
 
     for _ in tqdm(range(int(min(height, width) * 0.75))):
-        image = seam_carve(image, 'horizontal shrink')[0]
-        image = seam_carve(image, 'vertical shrink')[0]
+        image = seam_carve(image, 'horizontal')
+        image = seam_carve(image, 'vertical')
         video.write(cv2.resize(image, (width, height)))
 
     video.release()
