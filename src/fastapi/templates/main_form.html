@@ -5,5 +5,14 @@
             <input type="file" name="file"><br>
             <input type="submit" value="Submit">
         </form>
+        {% if picture %}
+            <img src="static/{{picture}}">
+        {% endif %}
+        {% if video %}
+            <video controls="controls" poster="static/{{picture}}">
+                <source src="static/{{video}}" type='video/mp4"'>
+                <a href="static/{{video}}">Download</a>.
+            </video>
+        {% endif %}
     </body>
 </html>
