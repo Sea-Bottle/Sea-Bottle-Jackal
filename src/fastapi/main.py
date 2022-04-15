@@ -38,7 +38,6 @@ async def create_jacklified(
     :return: Response object.
     :rtype: _TemplateResponse
     """
-
     for file_name in os.listdir('src/fastapi/tmp'):
         file_path = os.path.join('src/fastapi/tmp', file_name)
         os.remove(file_path)
@@ -70,7 +69,6 @@ async def show_jackalified(request: Request) -> _TemplateResponse:
     :return: Response object.
     :rtype: _TemplateResponse
     """
-
     return templates.TemplateResponse('main_form.html',
                                       {'request': request,
                                        'picture': picture,
