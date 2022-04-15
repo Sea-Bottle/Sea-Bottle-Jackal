@@ -1,9 +1,14 @@
 """A wrapper for getting a video with the distortion process from an image."""
+import gettext
 import sys
 
 from cv2 import cv2
-from seam_carve import seam_carve
 from tqdm import tqdm
+
+from src.backend.seam_carve import seam_carve
+
+translation = gettext.translation('src', localedir='locales', languages=['en', 'ru'])
+_ = translation.gettext
 
 
 def jackalify(image_path: str, video_path: str):
@@ -34,10 +39,10 @@ def jackalify(image_path: str, video_path: str):
     video.release()
 
 
-if __name__ == '__main__':
+def main():
+    """Run the main function."""
+    message = _('Usage – python3 jackalify.py input_image_path output_video_path')
     if len(sys.argv) != 3:
-        raise RuntimeError(
-            'Usage – python3 jackalify.py input_image_path output_video_path',
-        )
+        raise RuntimeError(message)
 
     jackalify(sys.argv[1], sys.argv[2])
