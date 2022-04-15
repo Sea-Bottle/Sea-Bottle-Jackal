@@ -11,7 +11,7 @@ import os
 import sys
 
 sys.path.append(os.path.join(sys.path[0], '../backend/'))
-from jackalify import jackalify # noqa
+from jackalify import jackalify  # noqa
 
 
 app = FastAPI()
