@@ -2,7 +2,6 @@
 import sys
 
 from cv2 import cv2
-# from src.backend.seam_carve import seam_carve
 from seam_carve import seam_carve
 from tqdm import tqdm
 
