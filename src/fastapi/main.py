@@ -16,7 +16,7 @@ from jackalify import jackalify  # noqa
 
 app = FastAPI()
 templates = Jinja2Templates(directory='src/fastapi/templates')
-app.mount('/static', StaticFiles(directory='src/fastapi/tmp'), name='static')
+app.mount('/static', StaticFiles(directory='src/fastapi/static'), name='static')
 
 picture = None
 video = None
@@ -38,19 +38,19 @@ async def create_jacklified(
     :return: Response object.
     :rtype: _TemplateResponse
     """
-    for file_name in os.listdir('src/fastapi/tmp'):
-        file_path = os.path.join('src/fastapi/tmp', file_name)
+    for file_name in os.listdir('src/fastapi/static'):
+        file_path = os.path.join('src/fastapi/static', file_name)
         os.remove(file_path)
 
     file_name, file_extension = os.path.splitext(file.filename)
-    async with aiofiles.open(f'src/fastapi/tmp/source{file_extension}', 'wb') as out_file:
+    async with aiofiles.open(f'src/fastapi/static/source{file_extension}', 'wb') as out_file:
         content = await file.read()
         picture = f'source{file_extension}'
         await out_file.write(content)
 
     background_tasks.add_task(jackalify,
-                              f'src/fastapi/tmp/source{file_extension}',
-                              'src/fastapi/tmp/jackalified.mp4')
+                              f'src/fastapi/static/source{file_extension}',
+                              'src/fastapi/static/jackalified.mp4')
 
     video = 'jackalified.mp4'
 
@@ -78,6 +78,6 @@ async def show_jackalified(request: Request) -> _TemplateResponse:
 if __name__ == '__main__':
     import uvicorn
     uvicorn.run(app)
-    for file_name in os.listdir('src/fastapi/tmp'):
-        file_path = os.path.join('src/fastapi/tmp', file_name)
+    for file_name in os.listdir('src/fastapi/static'):
+        file_path = os.path.join('src/fastapi/static', file_name)
         os.remove(file_path)
