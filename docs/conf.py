@@ -55,4 +55,4 @@ html_static_path = ['_static']
 
 master_doc = 'index'
 language = 'en'
-locale_dirs = [os.environ['PROJECT_ROOT']+'/locales']
+locale_dirs = [os.path.join(os.environ['PROJECT_ROOT'], 'locales')]

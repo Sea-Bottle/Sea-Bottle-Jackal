@@ -8,7 +8,7 @@ from tqdm import tqdm
 
 from src.backend.seam_carve import seam_carve
 
-translation = gettext.translation('src', localedir=(os.environ['PROJECT_ROOT'] + '/locales'), languages=['en', 'ru'])
+translation = gettext.translation('src', localedir=os.path.join(os.environ['PROJECT_ROOT'], 'locales'), languages=['en', 'ru'])
 _ = translation.gettext
 
 
