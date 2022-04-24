@@ -1,19 +1,50 @@
+<!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="static/css/style.css">
+        <link rel="icon" type="image/png" sizes="32x32" href="static/images/bottle.jpg">
+        <title>Sea Bottle Jackal</title>
+    </head>
     <body>
         <h1>Jackal Incorporated</h1>
         <form method="POST" enctype="multipart/form-data">
-            <input type="file" name="file"><br>
+            <div id="uploadButton">
+                <label for="imageUpload">Choose picture</label>
+                <p><input id="imageUpload" name="file" type="file" accept="image/*" style="display: None"></p>
+                <!-- style.opacity = 0; onchange=this.form.submit -->
+            </div>
             <input type="submit" value="Submit">
         </form>
         {% if picture %}
-            <img src="static/{{picture}}">
+            <img src="static/working/{{picture}}">
         {% endif %}
         {% if video %}
             <!-- <video controls="controls">
                 <source src="static/{{video}}" type='video/mp4"'>
                 <a href="static/{{video}}">Download</a>.
             </video> -->
-            <img src="static/{{video}}">
+            <!-- <img src="static/working/{{video}}"> -->
+            <div id="gif">
+                <button onclick="showGif()">Show GIF</button><br>
+            </div>
+            <p>
+                <form id="downloadGif" method="get">
+                    <button type="submit">Download GIF</button>
+                </form>
+                <form id="downloadPhoto" method="get">
+                    <button type="submit">Download photo</button>
+                </form>
+                <!-- Response.AddHeader("Content-Disposition", "attachment;filename=somefile.ext") -->
+            </p>
         {% endif %}
     </body>
 </html>
+<script>
+    function showGif(video) {
+        let div = document.getElementById("gif");
+        let img = document.createElement("img");
+        img.src = "static/working/{{video}}";
+        div.appendChild(img);
+    }
+</script>
