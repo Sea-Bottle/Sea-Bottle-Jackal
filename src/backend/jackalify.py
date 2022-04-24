@@ -43,7 +43,7 @@ def jackalify(image_path: str, video_path: str):
     frames[0].save(
         video_path,
         save_all=True,
-        append_images=frames[1:],  # Срез который игнорирует первый кадр.
+        append_images=frames[1:],
         optimize=True,
         duration=25,
         loop=0
