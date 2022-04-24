@@ -30,17 +30,15 @@ def jackalify(image_path: str, video_path: str):
             image.shape[0] * 512 // max(image.shape[:2]),
         ),
     )
+    image[:,:,[2,0]] = image[:,:,[0,2]]
     height, width, _ = image.shape
-    # fourcc = cv2.VideoWriter_fourcc(*'mp42')
-    # video = cv2.VideoWriter(video_path, fourcc, 60, (width, height))
 
     frames = []
 
     for _ in tqdm(range(int(min(height, width) * 0.75))):
         image = seam_carve(image, 'horizontal')
         image = seam_carve(image, 'vertical')
-        frames.append(Image.fromarray(np.uint8(cv2.resize(image, (width, height)))))
-        # video.write(cv2.resize(image, (width, height))) 
+        frames.append(Image.fromarray(np.uint8(cv2.resize(image, (width, height))), mode="RGB"))
 
     frames[0].save(
         video_path,
@@ -50,7 +48,6 @@ def jackalify(image_path: str, video_path: str):
         duration=25,
         loop=0
     )
-    # video.release()
 
 
 def main():
