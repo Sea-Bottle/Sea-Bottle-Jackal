@@ -5,8 +5,10 @@ import sys
 
 from cv2 import cv2
 from tqdm import tqdm
+from PIL import Image
+import numpy as np
 
-from src.backend.seam_carve import seam_carve
+from seam_carve import seam_carve
 
 translation = gettext.translation('src', localedir=os.path.join(os.environ['PROJECT_ROOT'], 'locales'), languages=['en', 'ru'])
 _ = translation.gettext
@@ -29,15 +31,26 @@ def jackalify(image_path: str, video_path: str):
         ),
     )
     height, width, _ = image.shape
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    video = cv2.VideoWriter(video_path, fourcc, 60, (width, height))
+    # fourcc = cv2.VideoWriter_fourcc(*'mp42')
+    # video = cv2.VideoWriter(video_path, fourcc, 60, (width, height))
+
+    frames = []
 
     for _ in tqdm(range(int(min(height, width) * 0.75))):
         image = seam_carve(image, 'horizontal')
         image = seam_carve(image, 'vertical')
-        video.write(cv2.resize(image, (width, height)))
+        frames.append(Image.fromarray(np.uint8(cv2.resize(image, (width, height)))))
+        # video.write(cv2.resize(image, (width, height))) 
 
-    video.release()
+    frames[0].save(
+        video_path,
+        save_all=True,
+        append_images=frames[1:],  # Срез который игнорирует первый кадр.
+        optimize=True,
+        duration=25,
+        loop=0
+    )
+    # video.release()
 
 
 def main():
