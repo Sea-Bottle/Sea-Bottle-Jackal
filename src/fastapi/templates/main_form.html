@@ -7,44 +7,37 @@
         <title>Sea Bottle Jackal</title>
     </head>
     <body>
+        <script src="static/js/scripts.js"></script>
         <h1>Jackal Incorporated</h1>
         <form method="POST" enctype="multipart/form-data">
             <div id="uploadButton">
-                <label for="imageUpload">Choose picture</label>
+                <label id="imageUploadLabel" for="imageUpload"> Choose picture </label>
                 <p><input id="imageUpload" name="file" type="file" accept="image/*" style="display: None"></p>
-                <!-- style.opacity = 0; onchange=this.form.submit -->
+                <button id="submitPicture" type="submit">Jackalify picture!</button>
             </div>
-            <input type="submit" value="Submit">
         </form>
         {% if picture %}
-            <img src="static/working/{{picture}}">
+            <div>
+                <progress id="progressBar" max="100" value="0"></progress> <br>
+                <img id="picture" src="static/working/{{picture}}" onload="checkProgress();checkGif()">
+            </div>
         {% endif %}
         {% if video %}
+<<<<<<< HEAD
             <!-- <video controls="controls">
                 <source src="static/{{video}}" type='video/mp4"'>
                 <a href="static/{{video}}">Download</a>.
             </video> -->
             <!-- <img src="static/working/{{video}}"> -->
+=======
+>>>>>>> script to another file
             <div id="gif">
-                <button onclick="showGif()">Show GIF</button><br>
-            </div>
-            <p>
-                <form id="downloadGif" method="get">
+                <p>
                     <button type="submit">Download GIF</button>
-                </form>
-                <form id="downloadPhoto" method="get">
                     <button type="submit">Download photo</button>
-                </form>
-                <!-- Response.AddHeader("Content-Disposition", "attachment;filename=somefile.ext") -->
-            </p>
+                    <!-- Response.AddHeader("Content-Disposition", "attachment;filename=somefile.ext") -->
+                </p>
+            </div>
         {% endif %}
     </body>
 </html>
-<script>
-    function showGif(video) {
-        let div = document.getElementById("gif");
-        let img = document.createElement("img");
-        img.src = "static/working/{{video}}";
-        div.appendChild(img);
-    }
-</script>

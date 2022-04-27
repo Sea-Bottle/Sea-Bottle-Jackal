@@ -1,3 +1,28 @@
 body {
-    /* background-image: url(../../../examples/wolf.gif); */
+    font-size: x-large;
+}
+
+button {
+    border: solid;
+    border-width: 1pt;
+    border-bottom-left-radius: 15% 50%;
+    border-bottom-right-radius: 15% 50%;
+    border-top-left-radius: 15% 50%;
+    border-top-right-radius: 15% 50%;
+}
+
+#progressBar {
+    width: 30%;
+}
+
+#picture {
+    width: 30%;
+}
+
+#gif {
+    display: none;
+}
+
+#gifImage {
+    width: 30%;
 }
