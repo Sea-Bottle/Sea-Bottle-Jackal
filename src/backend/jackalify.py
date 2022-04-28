@@ -31,7 +31,7 @@ def jackalify(image_path: str, video_path: str):
             image.shape[0] * 512 // max(image.shape[:2]),
         ),
     )
-    
+
     height, width, _ = image.shape
 
     frames = []
