@@ -22,7 +22,6 @@ def jackalify(image_path: str, video_path: str):
     :param video_path: The path to the output video.
     :type video_path: str
     """
-
     image = cv2.cvtColor(cv2.imread(image_path), cv2.COLOR_BGR2RGB)
     image = cv2.resize(
         image,
