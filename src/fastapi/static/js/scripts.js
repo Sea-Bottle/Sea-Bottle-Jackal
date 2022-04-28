@@ -1,6 +1,6 @@
 function checkGif() {
     setTimeout(() => {
-        fetch("/getGIF", {method: "GET"})
+        fetch("/checkGIF", {method: "GET"})
         .then((res) => {
             res.json()
             .then((resp) => {

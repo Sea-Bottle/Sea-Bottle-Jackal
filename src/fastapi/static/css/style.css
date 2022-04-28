@@ -1,8 +1,10 @@
 body {
-    font-size: x-large;
+    font-size: large;
 }
 
 button {
+    padding: 3pt;
+    background-color: rgb(200, 200, 200);
     border: solid;
     border-width: 1pt;
     border-bottom-left-radius: 15% 50%;
@@ -25,4 +27,18 @@ button {
 
 #gifImage {
     width: 30%;
+}
+
+.downloadLink {
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    padding: 10pt;
+    background-color: rgb(200, 200, 200);
+    border: solid;
+    border-width: 1pt;
+    border-bottom-left-radius: 15% 50%;
+    border-bottom-right-radius: 15% 50%;
+    border-top-left-radius: 15% 50%;
+    border-top-right-radius: 15% 50%;
 }
