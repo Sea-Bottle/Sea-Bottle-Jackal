@@ -15,8 +15,8 @@ from jackalify import jackalify  # noqa
 
 
 app = FastAPI()
-templates = Jinja2Templates(directory='src/fastapi/templates')
-app.mount('/static', StaticFiles(directory='src/fastapi/static'), name='static')
+templates = Jinja2Templates(directory=os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'templates'))
+app.mount('/static', StaticFiles(directory=os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static')), name='static')
 
 picture = None
 video = None
@@ -38,21 +38,21 @@ async def create_jacklified(
     :return: Response object.
     :rtype: _TemplateResponse
     """
-    for file_name in os.listdir('src/fastapi/static'):
-        file_path = os.path.join('src/fastapi/static', file_name)
+    for file_name in os.listdir(os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', 'working')):
+        file_path = os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', 'working', file_name)
         os.remove(file_path)
 
     file_name, file_extension = os.path.splitext(file.filename)
-    async with aiofiles.open(f'src/fastapi/static/source{file_extension}', 'wb') as out_file:
+    async with aiofiles.open(os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', f'source{file_extension}'), 'wb') as out_file:
         content = await file.read()
         picture = f'source{file_extension}'
         await out_file.write(content)
 
     background_tasks.add_task(jackalify,
-                              f'src/fastapi/static/source{file_extension}',
-                              'src/fastapi/static/jackalified.mp4')
+                              os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', f'source{file_extension}'),
+                              os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', 'jackalified.gif'))
 
-    video = 'jackalified.mp4'
+    video = 'jackalified.gif'
 
     return templates.TemplateResponse('main_form.html',
                                       {'request': request,
@@ -78,6 +78,6 @@ async def show_jackalified(request: Request) -> _TemplateResponse:
 if __name__ == '__main__':
     import uvicorn
     uvicorn.run(app)
-    for file_name in os.listdir('src/fastapi/static'):
-        file_path = os.path.join('src/fastapi/static', file_name)
+    for file_name in os.listdir(os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', 'working')):
+        file_path = os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', file_name)
         os.remove(file_path)
