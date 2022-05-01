@@ -63,6 +63,8 @@ def getProgress():
     """Get progress of jackalify."""
     global it
     global max_it
+    if max_it == 0:
+        return 0
     return int(it / max_it * 100)
 
 
