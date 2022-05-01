@@ -25,7 +25,6 @@ def jackalify(image_path: str, video_path: str):
     :param video_path: The path to the output video.
     :type video_path: str
     """
-
     global it
     global max_it
 
@@ -61,6 +60,7 @@ def jackalify(image_path: str, video_path: str):
 
 
 def getProgress():
+    """Get progress of jackalify."""
     global it
     global max_it
     return int(it / max_it * 100)
