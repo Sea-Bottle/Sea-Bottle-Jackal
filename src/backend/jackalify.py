@@ -42,7 +42,7 @@ def jackalify(image_path: str, video_path: str):
     frames = []
 
     max_it = int(min(height, width) * 0.75)
-    for it in tqdm(range(it)):
+    for it in tqdm(range(max_it)):
         image = seam_carve(image, 'horizontal')
         image = seam_carve(image, 'vertical')
         frames.append(Image.fromarray(np.uint8(cv2.resize(image, (width, height))), mode="RGB"))
