@@ -6,12 +6,13 @@ from fastapi.responses import HTMLResponse
 from starlette.templating import Jinja2Templates, _TemplateResponse
 from starlette.requests import Request
 from fastapi import BackgroundTasks
+from typing import Dict
 
 import os
 import sys
 
 sys.path.append(os.path.join(sys.path[0], '../backend/'))
-from jackalify import jackalify  # noqa
+from jackalify import jackalify, getProgress  # noqa
 
 
 app = FastAPI()
@@ -73,6 +74,28 @@ async def show_jackalified(request: Request) -> _TemplateResponse:
                                       {'request': request,
                                        'picture': picture,
                                        'video': video})
+
+
+@app.get("/checkGIF")
+async def checkGIF_fastapi() -> Dict:
+    """Check if GIF is created.
+
+    :return: Indicator of GIF creation and path to GIF.
+    :rtype: Dict
+    """
+    gif_path = os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', 'jackalified.gif')
+    is_exists = os.path.exists(gif_path)
+    return {'answ': is_exists, 'path': gif_path}
+
+
+@app.get("/getProgress")
+async def getProgress_fastapi() -> Dict:
+    """Get the progress of GIF creating.
+
+    :return: Progress of GIF creating.
+    :rtype: Dict
+    """
+    return {'prg': getProgress()}
 
 
 if __name__ == '__main__':
