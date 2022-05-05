@@ -85,7 +85,6 @@ async def checkGIF_fastapi() -> Dict:
     """
     gif_path = os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', 'jackalified.gif')
     is_exists = os.path.exists(gif_path)
-    print(is_exists)
     return {'answ': is_exists, 'path': gif_path}
 
 
