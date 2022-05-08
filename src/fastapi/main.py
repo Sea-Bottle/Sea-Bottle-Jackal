@@ -18,6 +18,7 @@ from jackalify import jackalify, getProgress  # noqa
 app = FastAPI()
 templates = Jinja2Templates(directory=os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'templates'))
 app.mount('/static', StaticFiles(directory=os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static')), name='static')
+working_dir = os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', 'working')
 
 picture = None
 video = None
@@ -39,19 +40,19 @@ async def create_jacklified(
     :return: Response object.
     :rtype: _TemplateResponse
     """
-    for file_name in os.listdir(os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', 'working')):
-        file_path = os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', 'working', file_name)
+    for file_name in os.listdir(working_dir):
+        file_path = os.path.join(working_dir, file_name)
         os.remove(file_path)
 
     file_name, file_extension = os.path.splitext(file.filename)
-    async with aiofiles.open(os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', f'source{file_extension}'), 'wb') as out_file:
+    async with aiofiles.open(os.path.join(working_dir, f'source{file_extension}'), 'wb') as out_file:
         content = await file.read()
         picture = f'source{file_extension}'
         await out_file.write(content)
 
     background_tasks.add_task(jackalify,
-                              os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', f'source{file_extension}'),
-                              os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', 'jackalified.gif'))
+                              os.path.join(working_dir, f'source{file_extension}'),
+                              os.path.join(working_dir, 'jackalified.gif'))
 
     video = 'jackalified.gif'
 
@@ -83,7 +84,7 @@ async def checkGIF_fastapi() -> Dict:
     :return: Indicator of GIF creation and path to GIF.
     :rtype: Dict
     """
-    gif_path = os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', 'jackalified.gif')
+    gif_path = os.path.join(working_dir, 'jackalified.gif')
     is_exists = os.path.exists(gif_path)
     return {'answ': is_exists, 'path': gif_path}
 
@@ -101,6 +102,6 @@ async def getProgress_fastapi() -> Dict:
 if __name__ == '__main__':
     import uvicorn
     uvicorn.run(app)
-    for file_name in os.listdir(os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', 'working')):
-        file_path = os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', file_name)
+    for file_name in os.listdir(working_dir):
+        file_path = os.path.join(working_dir, file_name)
         os.remove(file_path)
