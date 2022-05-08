@@ -17,13 +17,15 @@ it = 0
 max_it = 0
 
 
-def jackalify(image_path: str, video_path: str):
+def jackalify(image_path: str, video_path: str, photo_path: str = ''):
     """Apply the seam carving algorithm to the image and get a video with the distortion process.
 
     :param image_path: The path to the input image.
     :type image_path: str
     :param video_path: The path to the output video.
     :type video_path: str
+    :param photo_path: The path to the output photo (if '' then no photo would be generated)
+    :type photo_path: str
     """
     global it
     global max_it
@@ -55,6 +57,8 @@ def jackalify(image_path: str, video_path: str):
         duration=25,
         loop=0
     )
+    if (photo_path != ''):
+        frames[-1].save(photo_path)
 
 
 def getProgress():
