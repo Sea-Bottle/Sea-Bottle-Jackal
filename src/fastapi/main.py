@@ -40,6 +40,9 @@ async def create_jacklified(
     :return: Response object.
     :rtype: _TemplateResponse
     """
+    global picture
+    global video
+
     for file_name in os.listdir(working_dir):
         file_path = os.path.join(working_dir, file_name)
         os.remove(file_path)
@@ -52,14 +55,16 @@ async def create_jacklified(
 
     background_tasks.add_task(jackalify,
                               os.path.join(working_dir, f'source{file_extension}'),
-                              os.path.join(working_dir, 'jackalified.gif'))
+                              os.path.join(working_dir, 'jackalified.gif'),
+                              os.path.join(working_dir, 'jackalified.png'))
 
     video = 'jackalified.gif'
 
     return templates.TemplateResponse('main_form.html',
                                       {'request': request,
                                        'picture': picture,
-                                       'video': video})
+                                       'video': video,
+                                       'photo': 'jackalified.png'})
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -71,10 +76,14 @@ async def show_jackalified(request: Request) -> _TemplateResponse:
     :return: Response object.
     :rtype: _TemplateResponse
     """
+    global picture
+    global video
+
     return templates.TemplateResponse('main_form.html',
                                       {'request': request,
                                        'picture': picture,
-                                       'video': video})
+                                       'video': video,
+                                       'photo': 'jackalified.png'})
 
 
 @app.get("/checkGIF")
