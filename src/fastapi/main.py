@@ -86,7 +86,7 @@ async def checkGIF_fastapi() -> Dict:
     """
     gif_path = os.path.join(working_dir, 'jackalified.gif')
     is_exists = os.path.exists(gif_path)
-    return {'answ': is_exists, 'path': 'jackalified.gif'}
+    return {'answ': is_exists, 'path': gif_path}
 
 
 @app.get("/getProgress")
