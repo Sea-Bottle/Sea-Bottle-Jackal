@@ -2,6 +2,7 @@
 import gettext
 import os
 import sys
+from typing import Optional
 
 from cv2 import cv2
 from tqdm import tqdm
@@ -17,18 +18,20 @@ it = 0
 max_it = 0
 
 
-def jackalify(image_path: str, video_path: str):
+def jackalify(in_image_path: str, video_path: str, out_image_path: Optional[str] = None):
     """Apply the seam carving algorithm to the image and get a video with the distortion process.
 
-    :param image_path: The path to the input image.
-    :type image_path: str
+    :param in_image_path: The path to the input image.
+    :type in_image_path: str
     :param video_path: The path to the output video.
     :type video_path: str
+    :param out_image_path: The path to the output image (if None then no photo would be generated)
+    :type out_image_path: str
     """
     global it
     global max_it
 
-    image = cv2.cvtColor(cv2.imread(image_path), cv2.COLOR_BGR2RGB)
+    image = cv2.cvtColor(cv2.imread(in_image_path), cv2.COLOR_BGR2RGB)
     image = cv2.resize(
         image,
         (
@@ -55,6 +58,8 @@ def jackalify(image_path: str, video_path: str):
         duration=25,
         loop=0
     )
+    if out_image_path:
+        frames[-1].save(out_image_path)
 
 
 def getProgress():
