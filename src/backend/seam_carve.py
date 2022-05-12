@@ -133,7 +133,7 @@ def seam_carve(
 
     :param image: Input image.
     :type image: np.ndarray
-    :param action: The direction of image compression.
+    :param action: The direction of image compression horizontal or vertical.
     :type action: str
     :return: Output image.
     :rtype: np.ndarray
