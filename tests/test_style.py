@@ -1,8 +1,8 @@
+import os
 import unittest
 from typing import List
 
 import pycodestyle
-import os
 
 
 class TestCodeFormat(unittest.TestCase):

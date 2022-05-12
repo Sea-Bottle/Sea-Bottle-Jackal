@@ -1,24 +1,25 @@
 """Fastapi server interface."""
-import aiofiles
-from fastapi import FastAPI, File, UploadFile
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
-from starlette.templating import Jinja2Templates, _TemplateResponse
-from starlette.requests import Request
-from fastapi import BackgroundTasks
-from typing import Dict
-
 import os
 import sys
+from typing import Dict
 
-sys.path.append(os.path.join(sys.path[0], '../backend/'))
-from jackalify import jackalify, getProgress  # noqa
+import aiofiles
+from fastapi import BackgroundTasks
+from fastapi import FastAPI, File, UploadFile
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from starlette.requests import Request
+from starlette.templating import Jinja2Templates, _TemplateResponse
 
+sys.path.append(os.path.join(sys.path[0], '..', '..'))
+
+from src.backend.jackalify import jackalify, getProgress  # noqa
 
 app = FastAPI()
-templates = Jinja2Templates(directory=os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'templates'))
-app.mount('/static', StaticFiles(directory=os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static')), name='static')
-working_dir = os.path.join(os.environ['PROJECT_ROOT'], 'src', 'fastapi', 'static', 'working')
+fastapi_path = os.path.abspath(os.path.dirname(__file__))
+templates = Jinja2Templates(directory=os.path.join(fastapi_path, 'templates'))
+app.mount('/static', StaticFiles(directory=os.path.join(fastapi_path, 'static')), name='static')
+working_dir = os.path.join(fastapi_path, 'static', 'working')
 
 picture = None
 video = None
@@ -26,8 +27,8 @@ video = None
 
 @app.post("/", response_class=HTMLResponse)
 async def create_jacklified(
-    request: Request, background_tasks: BackgroundTasks,
-    file: UploadFile = File(...)
+        request: Request, background_tasks: BackgroundTasks,
+        file: UploadFile = File(...)
 ) -> _TemplateResponse:
     """Upload file and call 'jackalify algorithm.
 
@@ -110,6 +111,7 @@ async def getProgress_fastapi() -> Dict:
 
 if __name__ == '__main__':
     import uvicorn
+
     uvicorn.run(app)
     for file_name in os.listdir(working_dir):
         file_path = os.path.join(working_dir, file_name)
