@@ -4,14 +4,15 @@ import os
 import sys
 from typing import Optional
 
+import numpy as np
+from PIL import Image
 from cv2 import cv2
 from tqdm import tqdm
-from PIL import Image
-import numpy as np
 
-from seam_carve import seam_carve
+from src.backend.seam_carve import seam_carve
 
-translation = gettext.translation('src', localedir=os.path.join(os.environ['PROJECT_ROOT'], 'locales'), languages=['en', 'ru'])
+project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+translation = gettext.translation('src', localedir=os.path.join(project_path, 'locales'), languages=['en', 'ru'])
 _ = translation.gettext
 
 it = 0
