@@ -9,6 +9,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.requests import Request
 from starlette.templating import Jinja2Templates, _TemplateResponse
+import gettext
 
 sys.path.append(os.path.join(sys.path[0], '..', '..'))
 
@@ -17,9 +18,13 @@ from src.backend.jackalify import jackalify, getProgress  # noqa
 app = FastAPI()
 fastapi_path = os.path.abspath(os.path.dirname(__file__))
 templates = Jinja2Templates(directory=os.path.join(fastapi_path, 'templates'))
+templates.env.add_extension('jinja2.ext.i18n')
 app.mount('/static', StaticFiles(directory=os.path.join(fastapi_path, 'static')), name='static')
 working_dir = os.path.join(fastapi_path, 'static', 'working')
 os.makedirs(working_dir, exist_ok=True)
+
+translation = gettext.translation('src', localedir=os.path.join(os.environ['PROJECT_ROOT'], 'locales'), languages=['en', 'ru'])
+templates.env.install_gettext_translations(translation)
 
 picture = None
 video = None
