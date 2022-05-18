@@ -24,7 +24,7 @@ def jackalify(in_image_path: str, video_path: Optional[str] = None, out_image_pa
 
     :param in_image_path: The path to the input image.
     :type in_image_path: str
-    :param video_path: The path to the output video (if None then no photo would be generated).
+    :param video_path: The path to the output video (if None then no video would be generated).
     :type video_path: str
     :param out_image_path: The path to the output image (if None then no photo would be generated).
     :type out_image_path: str

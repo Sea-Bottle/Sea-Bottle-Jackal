@@ -1,7 +1,8 @@
 """Command line interface."""
 import argparse
 import subprocess
-from os.path import exists
+import os
+import sys
 from src.backend.jackalify import jackalify
 
 
@@ -15,8 +16,11 @@ def is_valid_file(parser: argparse.ArgumentParser, arg: str) -> str:
     :return: Path to file if it exists.
     :rtype: str
     """
-    if not exists(arg):
+    path, extention = os.path.splitext(arg)
+    if not os.path.exists(arg):
         parser.error(f"The file {arg} does not exist!")
+    elif extention not in ['.png', '.jpg', '.jpeg']:
+        parser.error(f"Wrong file extension '{extention}'! Try '.png', '.jpg', or '.jpeg' file!")
     else:
         return arg
 
@@ -25,45 +29,51 @@ parser = argparse.ArgumentParser(description='Jackalifying algorithm')
 parser.add_argument(
     '-w', '--web',
     action='store_true',
-    help='Run fastapi server interface'
+    help='run fastapi server interface'
 )
 parser.add_argument(
     '-g', '--gif',
     action='store_true',
-    help='Create jackalified gif instead of picture'
+    help='create jackalified gif instead of picture'
 )
 parser.add_argument(
     'input_path',
     nargs='?',
     action='store',
-    help='Picture you want to jackalify',
+    help='picture you want to jackalify',
     type=lambda x: is_valid_file(parser, x)
 )
 parser.add_argument(
     '-o', '--output',
     action='store',
     dest='output_path',
-    help='Path to save jackalified instance'
+    help='path to save jackalified instance'
 )
 
 
 if __name__ == "__main__":
     args = parser.parse_args()
     if args.web:
-        if args.gif or args.input_path or args.input_path:
+        if len(sys.argv) > 2:
             print("-w must be a single argument")
         else:
-            subprocess.run(["python", "src/fastapi/main.py"])
+            subprocess.run(["python", os.path.join("src", "fastapi", "main.py")])
     elif args.input_path:
         if args.output_path:
+            if args.input_path == args.output_path:
+                path, extention = os.path.splitext(args.output_path)
+                args.output_path = f"{path}_jackalified{extention}"
             if args.gif:
                 jackalify(args.input_path, video_path=args.output_path)
             else:
                 jackalify(args.input_path, out_image_path=args.output_path)
         else:
+            path, extention = os.path.splitext(args.input_path)
             if args.gif:
-                jackalify(args.input_path, video_path=args.input_path)
+                output_path = f"{path}_jackalified.gif"
+                jackalify(args.input_path, video_path=output_path)
             else:
-                jackalify(args.input_path, out_image_path=args.input_path)
+                output_path = f"{path}_jackalified{extention}"
+                jackalify(args.input_path, out_image_path=output_path)
     else:
         parser.error("No input path given!")
