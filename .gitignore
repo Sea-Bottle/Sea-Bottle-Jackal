@@ -133,3 +133,4 @@ dmypy.json
 # Temporary directory
 tmp/
 .vscode/
+.doit.db

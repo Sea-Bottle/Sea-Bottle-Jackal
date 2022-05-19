@@ -15,6 +15,9 @@ uvicorn = "*"
 
 [dev-packages]
 sphinx = "*"
+doit = "*"
+pycodestyle = "*"
+pybabel = "*"
 
 [requires]
 python_version = "3.8"
