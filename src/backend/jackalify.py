@@ -19,18 +19,21 @@ it = 0
 max_it = 0
 
 
-def jackalify(in_image_path: str, video_path: str, out_image_path: Optional[str] = None):
+def jackalify(in_image_path: str, video_path: Optional[str] = None, out_image_path: Optional[str] = None):
     """Apply the seam carving algorithm to the image and get a video with the distortion process.
 
     :param in_image_path: The path to the input image.
     :type in_image_path: str
-    :param video_path: The path to the output video.
+    :param video_path: The path to the output video (if None then no video would be generated).
     :type video_path: str
-    :param out_image_path: The path to the output image (if None then no photo would be generated)
+    :param out_image_path: The path to the output image (if None then no photo would be generated).
     :type out_image_path: str
     """
     global it
     global max_it
+
+    if not video_path and not out_image_path:
+        raise AttributeError("At least one of output paths should be defined!")
 
     image = cv2.cvtColor(cv2.imread(in_image_path), cv2.COLOR_BGR2RGB)
     image = cv2.resize(
@@ -51,14 +54,16 @@ def jackalify(in_image_path: str, video_path: str, out_image_path: Optional[str]
         image = seam_carve(image, 'vertical')
         frames.append(Image.fromarray(np.uint8(cv2.resize(image, (width, height))), mode="RGB"))
 
-    frames[0].save(
-        video_path,
-        save_all=True,
-        append_images=frames[1:],
-        optimize=True,
-        duration=25,
-        loop=0
-    )
+    if video_path:
+        frames[0].save(
+            video_path,
+            save_all=True,
+            append_images=frames[1:],
+            optimize=True,
+            duration=25,
+            loop=0
+        )
+
     if out_image_path:
         frames[-1].save(out_image_path)
 
