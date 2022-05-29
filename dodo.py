@@ -35,6 +35,6 @@ def task_html():
 def task_test():
     """Test code."""
     return {
-        "actions": ['python -m unittest -v -f tests/*.py'],
+        "actions": ['python -m unittest -v -f test/*.py'],
         "task_dep": ["translations"],
     }
