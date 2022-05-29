@@ -18,6 +18,7 @@ sphinx = "*"
 doit = "*"
 pycodestyle = "*"
 pybabel = "*"
+build = "*"
 
 [requires]
 python_version = "3.8"

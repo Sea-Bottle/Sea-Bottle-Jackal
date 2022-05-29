@@ -13,7 +13,8 @@ def task_translations():
         actions.append(f'pybabel compile -D src -d locales -l {lang}')
     return {
         "actions": actions,
-        "targets": glob.glob("*.mo"),
+        "file_dep": glob.glob("**/*.po", recursive=True),
+        "targets": glob.glob("**/*.mo", recursive=True) if glob.glob("**/*.mo", recursive=True) else ['.mo'],
         "clean": True
     }
 
@@ -24,7 +25,8 @@ def task_html():
     clean_build = partial(shutil.rmtree, build_dir, ignore_errors=True)
     return {
         "actions": ['sphinx-build docs %(targets)s'],
-        "file_dep": glob.glob("*.py") + glob.glob("*.rst"),
+        "file_dep": glob.glob("**/*.py", recursive=True) + glob.glob("**/*.rst", recursive=True),
+        "task_dep": ["translations"],
         "targets": [build_dir],
         "clean": [clean_build]
     }
@@ -33,5 +35,6 @@ def task_html():
 def task_test():
     """Test code."""
     return {
-        "actions": ['python -m unittest -v -f tests/*.py']
+        "actions": ['python -m unittest -v -f tests/*.py'],
+        "task_dep": ["translations"],
     }
