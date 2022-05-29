@@ -4,8 +4,7 @@ import sys
 from typing import Dict
 
 import aiofiles
-from fastapi import BackgroundTasks
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, HTTPException, BackgroundTasks
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.requests import Request
@@ -20,6 +19,7 @@ fastapi_path = os.path.abspath(os.path.dirname(__file__))
 templates = Jinja2Templates(directory=os.path.join(fastapi_path, 'templates'))
 app.mount('/static', StaticFiles(directory=os.path.join(fastapi_path, 'static')), name='static')
 working_dir = os.path.join(fastapi_path, 'static', 'working')
+os.makedirs(working_dir, exist_ok=True)
 
 picture = None
 video = None
@@ -47,6 +47,9 @@ async def create_jacklified(
     for file_name in os.listdir(working_dir):
         file_path = os.path.join(working_dir, file_name)
         os.remove(file_path)
+
+    if not file.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+        raise HTTPException(status_code=415, detail="Wrong file extension: only  png, jpg, jpeg are allowed")
 
     file_name, file_extension = os.path.splitext(file.filename)
     async with aiofiles.open(os.path.join(working_dir, f'source{file_extension}'), 'wb') as out_file:

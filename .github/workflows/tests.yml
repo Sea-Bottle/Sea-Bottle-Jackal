@@ -25,9 +25,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        pip install requests==2.27.1
         sudo apt-get install python-babel
         pybabel compile -D src -d locales -l ru
     - name: Run tests
       run: |
-        python -m unittest -v -f tests/*.py
+        python -m unittest -v -f test/*.py
         pydocstyle test src
