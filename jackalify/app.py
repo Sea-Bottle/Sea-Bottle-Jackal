@@ -1,6 +1,5 @@
 """Fastapi server interface."""
 import os
-import sys
 from typing import Dict
 
 import aiofiles

@@ -15,7 +15,7 @@ def task_translations():
         "actions": actions,
         "file_dep": glob.glob("**/*.po", recursive=True),
         "targets": glob.glob("**/*.mo", recursive=True) if glob.glob("**/*.mo", recursive=True) else ['.mo'],
-        "clean": True
+        "clean": True,
     }
 
 
@@ -28,13 +28,35 @@ def task_html():
         "file_dep": glob.glob("**/*.py", recursive=True) + glob.glob("**/*.rst", recursive=True),
         "task_dep": ["translations"],
         "targets": [build_dir],
-        "clean": [clean_build]
+        "clean": [clean_build],
     }
 
 
 def task_test():
-    """Test code."""
+    """Perform all tests."""
+    return {
+        "actions": ['python -m unittest -v -f test/*.py'],
+        "task_dep": ["unittest", "style", "docstyle"],
+    }
+
+
+def task_unittest():
+    """Perform unittests."""
     return {
         "actions": ['python -m unittest -v -f test/*.py'],
         "task_dep": ["translations"],
+    }
+
+
+def task_style():
+    """Check style against flake8."""
+    return {
+        "actions": ['flake8 --extend-ignore=E501 src'],
+    }
+
+
+def task_docstyle():
+    """Check docstrings against pydocstyle."""
+    return {
+        "actions": ['pydocstyle src'],
     }
