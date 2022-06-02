@@ -1,5 +1,6 @@
 """A wrapper for getting a video with the distortion process from an image."""
 import gettext
+import io
 import os
 import sys
 from typing import Optional
@@ -54,18 +55,24 @@ def jackalify(in_image_path: str, video_path: Optional[str] = None, out_image_pa
         image = seam_carve(image, 'vertical')
         frames.append(Image.fromarray(np.uint8(cv2.resize(image, (width, height))), mode="RGB"))
 
+    if out_image_path:
+        frames[-1].save(out_image_path)
+
     if video_path:
+        animated_gif = io.BytesIO()
         frames[0].save(
-            video_path,
+            animated_gif,
+            format="GIF",
             save_all=True,
             append_images=frames[1:],
             optimize=True,
             duration=25,
             loop=0
         )
-
-    if out_image_path:
-        frames[-1].save(out_image_path)
+        animated_gif.seek(0)
+        gif_file = open(video_path, 'wb')
+        gif_file.write(animated_gif.read())
+        gif_file.close()
 
 
 def getProgress():
