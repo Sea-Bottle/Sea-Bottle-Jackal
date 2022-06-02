@@ -70,9 +70,8 @@ def jackalify(in_image_path: str, video_path: Optional[str] = None, out_image_pa
             loop=0
         )
         animated_gif.seek(0)
-        gif_file = open(video_path, 'wb')
-        gif_file.write(animated_gif.read())
-        gif_file.close()
+        with open(video_path, 'wb') as gif_file:
+            gif_file.write(animated_gif.read())
 
 
 def getProgress():
