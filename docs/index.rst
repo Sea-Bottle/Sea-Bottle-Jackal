@@ -15,7 +15,10 @@ Welcome to Sea Bottle Jackal's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   backend
+   sea_bottle_jackal
+   app
+   jackal
+   seam_carve
 
 
 Indices and tables

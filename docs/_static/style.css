@@ -1,0 +1,13 @@
+.document {
+    min-width: 75% !important;
+    max-width: 80% !important;
+}
+
+img {
+    max-width: 50% !important;
+}
+
+.body {
+    min-width: 100% !important;
+    max-width: 100% !important;
+}

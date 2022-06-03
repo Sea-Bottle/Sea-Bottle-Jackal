@@ -1,6 +1,6 @@
 Picture distortion
 ==================
 
-.. automodule:: src.backend.jackalify
+.. automodule:: jackalify.jackal
    :members:
    :undoc-members:

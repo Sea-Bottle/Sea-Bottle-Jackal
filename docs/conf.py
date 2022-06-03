@@ -52,7 +52,8 @@ html_theme = 'alabaster'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+html_css_files = ['style.css']
 
 master_doc = 'index'
 language = 'en'
-locale_dirs = [os.path.join(os.environ['PROJECT_ROOT'], 'locales')]
+locale_dirs = [os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'locales'))]

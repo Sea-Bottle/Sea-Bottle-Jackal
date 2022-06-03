@@ -1,6 +1,6 @@
 Seam carving algorithm
 ======================
 
-.. automodule:: src.backend.seam_carve
+.. automodule:: jackalify.seam_carve
    :members:
    :undoc-members:
