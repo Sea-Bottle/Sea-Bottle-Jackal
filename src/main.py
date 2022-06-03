@@ -11,9 +11,9 @@ from starlette.requests import Request
 from starlette.templating import Jinja2Templates, _TemplateResponse
 import gettext
 
-sys.path.append(os.path.join(sys.path[0], '..', '..'))
+sys.path.append(os.path.join(sys.path[0], '..'))
 
-from src.backend.jackalify import jackalify, getProgress  # noqa
+from src.jackalify import jackalify, getProgress  # noqa
 
 app = FastAPI()
 fastapi_path = os.path.abspath(os.path.dirname(__file__))

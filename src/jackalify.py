@@ -10,9 +10,9 @@ from PIL import Image
 from cv2 import cv2
 from tqdm import tqdm
 
-from src.backend.seam_carve import seam_carve
+from src.seam_carve import seam_carve
 
-project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 translation = gettext.translation('src', localedir=os.path.join(project_path, 'locales'), languages=['en', 'ru'])
 _ = translation.gettext
 

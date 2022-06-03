@@ -1,6 +1,6 @@
 """Jackalify launcher."""
 
-from src.backend.jackalify import main
+from src.seaBottleJackal import main
 
 
 if __name__ == "__main__":

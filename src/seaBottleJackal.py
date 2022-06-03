@@ -4,7 +4,7 @@ import os
 import subprocess
 import sys
 
-from src.backend.jackalify import jackalify
+from src.jackalify import jackalify
 
 
 def is_valid_file(parser: argparse.ArgumentParser, arg: str) -> str:
@@ -26,33 +26,32 @@ def is_valid_file(parser: argparse.ArgumentParser, arg: str) -> str:
         return arg
 
 
-parser = argparse.ArgumentParser(description='Jackalifying algorithm')
-parser.add_argument(
-    '-w', '--web',
-    action='store_true',
-    help='run fastapi server interface'
-)
-parser.add_argument(
-    '-g', '--gif',
-    action='store_true',
-    help='create jackalified gif instead of picture'
-)
-parser.add_argument(
-    'input_path',
-    nargs='?',
-    action='store',
-    help='picture you want to jackalify',
-    type=lambda x: is_valid_file(parser, x)
-)
-parser.add_argument(
-    '-o', '--output',
-    action='store',
-    dest='output_path',
-    help='path to save jackalified instance',
-)
-
-
-if __name__ == "__main__":
+def main():
+    """Run the main function."""
+    parser = argparse.ArgumentParser(description='Jackalifying algorithm')
+    parser.add_argument(
+        '-w', '--web',
+        action='store_true',
+        help='run fastapi server interface'
+    )
+    parser.add_argument(
+        '-g', '--gif',
+        action='store_true',
+        help='create jackalified gif instead of picture'
+    )
+    parser.add_argument(
+        'input_path',
+        nargs='?',
+        action='store',
+        help='picture you want to jackalify',
+        type=lambda x: is_valid_file(parser, x)
+    )
+    parser.add_argument(
+        '-o', '--output',
+        action='store',
+        dest='output_path',
+        help='path to save jackalified instance',
+    )
     args = parser.parse_args()
     if args.web:
         if len(sys.argv) > 2:
