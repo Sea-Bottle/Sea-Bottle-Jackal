@@ -4,7 +4,7 @@ import os
 import subprocess
 import sys
 
-from src.jackalify import jackalify
+from jackalify.jackal import jackalify
 
 
 def is_valid_file(parser: argparse.ArgumentParser, arg: str) -> str:
@@ -57,8 +57,8 @@ def main():
         if len(sys.argv) > 2:
             parser.error("-w must be a single argument!")
         else:
-            script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "src", "fastapi", "main.py"))
-            subprocess.run(["python", script_path])
+            script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "main.py"))
+            subprocess.run(["python3", script_path])
     elif args.input_path:
         if args.output_path:
             if args.input_path == args.output_path:
