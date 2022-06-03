@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from src.fastapi.main import app
+from jackalify.app import app
 from fastapi.testclient import TestClient
 
 
@@ -11,7 +11,7 @@ class TestApi(unittest.TestCase):
         self.data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "data"))
         self.client = TestClient(app)
         self.result_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                                       "..", "src", "fastapi", "static", "working"))
+                                                       "..", "jackalify", "static", "working"))
 
     def test_correct_file(self):
         response = self.client.get("/")
