@@ -12,11 +12,11 @@ import gettext
 
 from jackalify.jackal import jackalify, getProgress  # noqa
 
+
 app = FastAPI()
 fastapi_path = os.path.abspath(os.path.dirname(__file__))
 translation = gettext.translation('src', localedir=os.path.abspath(os.path.join(fastapi_path, "..", "..", "locales")), languages=['en', 'ru'])
 templates = Jinja2Templates(directory=os.path.join(fastapi_path, 'templates'))
-templates.env.add_extension('jinja2.ext.i18n')
 templates.env.install_gettext_translations(translation)
 app.mount('/static', StaticFiles(directory=os.path.join(fastapi_path, 'static')), name='static')
 working_dir = os.path.join(fastapi_path, 'static', 'working')

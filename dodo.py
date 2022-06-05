@@ -5,16 +5,37 @@ import shutil
 import glob
 
 
+def task_pot():
+    """Re-create .pot ."""
+    return {
+        "actions": ['pybabel extract -F locales/babel-mapping.ini -o jackalify.pot jackalify'],
+        "file_dep": glob.glob('**/*.py', recursive=True),
+        "targets": ['jackalify.pot'],
+        "clean": True,
+    }
+
+
+def task_po():
+    """Update translations."""
+    return {
+        "actions": ['pybabel update -D jackalify -d locales -i jackalify.pot'],
+        "file_dep": ['jackalify.pot'],
+        "task_dep": ['pot'],
+        "targets": glob.glob("locales/**/*.po", recursive=True),
+    }
+
+
 def task_translations():
-    """Generate .mo translation files."""
+    """Compile translations."""
     languages = ['ru', 'en']
     actions = []
     for lang in languages:
-        actions.append(f'pybabel compile -D src -d locales -l {lang}')
+        actions.append(f'pybabel compile -i locales/{lang}/LC_MESSAGES/jackalify.po -o jackalify/locales/{lang}/LC_MESSAGES/jackalify.mo -l {lang}')
     return {
         "actions": actions,
-        "file_dep": glob.glob("**/*.po", recursive=True),
-        "targets": glob.glob("**/*.mo", recursive=True) if glob.glob("**/*.mo", recursive=True) else ['.mo'],
+        "file_dep": glob.glob("locales/**/*.po", recursive=True),
+        "task_dep": ['po'],
+        "targets": glob.glob("jackalify/locales/**/*.mo", recursive=True) if glob.glob("jackalify/locales/**/*.mo", recursive=True) else ['.mo'],
         "clean": True,
     }
 
