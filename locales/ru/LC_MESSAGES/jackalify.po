@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-05 16:06+0300\n"
+"POT-Creation-Date: 2022-06-05 19:27+0300\n"
 "PO-Revision-Date: 2022-05-15 19:01+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -18,6 +18,56 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
+
+#: jackalify/__main__.py:27
+msgid "The file {} does not exist!"
+msgstr "Файл {} не существует!"
+
+#: jackalify/__main__.py:29
+msgid "Wrong file extension '{}'! Try '.png', '.jpg', or '.jpeg' file!"
+msgstr ""
+"Неверное расширение файла '{}'! Используйте '.png', '.jpg', или '.jpeg' "
+"файл"
+
+#: jackalify/__main__.py:35
+msgid "Jackalifying algorithm"
+msgstr "Алгоритм зашакаливания"
+
+#: jackalify/__main__.py:39
+msgid "run fastapi server interface"
+msgstr "запуск серверного интерфейса fastapi"
+
+#: jackalify/__main__.py:44
+msgid "create jackalified gif instead of picture"
+msgstr "создать зашакаленную gif вместо картинки"
+
+#: jackalify/__main__.py:50
+msgid "picture you want to jackalify"
+msgstr "картинка, которую вы хотите зашакалить"
+
+#: jackalify/__main__.py:57
+msgid "path to save jackalified instance"
+msgstr "путь для сохранения зашакаленной сущности"
+
+#: jackalify/__main__.py:62
+msgid "-w must be a single argument!"
+msgstr "-w должен быть единственным аргументом!"
+
+#: jackalify/__main__.py:70
+msgid "Output file shouldn't be gif!"
+msgstr "Выходной файл не должен быть формата gif!"
+
+#: jackalify/__main__.py:75
+msgid "Output name should end with '.gif'!"
+msgstr "Имя выходного файла должно заканчиваться на '.gif'!"
+
+#: jackalify/__main__.py:79
+msgid "Output name should end with '.png', '.jpg', or '.jpeg'!"
+msgstr "Имя выходного файла должно заканчиваться на '.png', '.jpg', или '.jpeg'!"
+
+#: jackalify/__main__.py:90
+msgid "No input path given!"
+msgstr "Нет входного файла!"
 
 #: jackalify/jackal.py:87
 msgid "Usage – python jackalify.py input_image_path output_video_path"

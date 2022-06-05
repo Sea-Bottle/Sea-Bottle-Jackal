@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-05 16:06+0300\n"
+"POT-Creation-Date: 2022-06-05 19:27+0300\n"
 "PO-Revision-Date: 2022-05-15 15:27+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -17,6 +17,54 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
+
+#: jackalify/__main__.py:27
+msgid "The file {} does not exist!"
+msgstr ""
+
+#: jackalify/__main__.py:29
+msgid "Wrong file extension '{}'! Try '.png', '.jpg', or '.jpeg' file!"
+msgstr ""
+
+#: jackalify/__main__.py:35
+msgid "Jackalifying algorithm"
+msgstr ""
+
+#: jackalify/__main__.py:39
+msgid "run fastapi server interface"
+msgstr ""
+
+#: jackalify/__main__.py:44
+msgid "create jackalified gif instead of picture"
+msgstr ""
+
+#: jackalify/__main__.py:50
+msgid "picture you want to jackalify"
+msgstr ""
+
+#: jackalify/__main__.py:57
+msgid "path to save jackalified instance"
+msgstr ""
+
+#: jackalify/__main__.py:62
+msgid "-w must be a single argument!"
+msgstr ""
+
+#: jackalify/__main__.py:70
+msgid "Output file shouldn't be gif!"
+msgstr ""
+
+#: jackalify/__main__.py:75
+msgid "Output name should end with '.gif'!"
+msgstr ""
+
+#: jackalify/__main__.py:79
+msgid "Output name should end with '.png', '.jpg' or '.jpeg'!"
+msgstr ""
+
+#: jackalify/__main__.py:90
+msgid "No input path given!"
+msgstr ""
 
 #: jackalify/jackal.py:87
 msgid "Usage – python jackalify.py input_image_path output_video_path"

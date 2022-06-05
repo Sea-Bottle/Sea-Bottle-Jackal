@@ -4,8 +4,12 @@ import argparse
 import os
 import subprocess
 import sys
+import gettext
 
 from jackalify.jackal import jackalify
+
+translation = gettext.translation('jackalify', localedir=os.path.join(os.path.dirname(__file__), 'locales'), languages=['ru'])
+_ = translation.gettext
 
 
 def is_valid_file(parser: argparse.ArgumentParser, arg: str) -> str:
@@ -37,7 +41,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '-g', '--gif',
         action='store_true',
-        help=_('create jackalified gif instead of picture')
+        help=_("create jackalified gif instead of picture")
     )
     parser.add_argument(
         'input_path',
