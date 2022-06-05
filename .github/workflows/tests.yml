@@ -27,6 +27,7 @@ jobs:
         pip install -r requirements.txt
         pip install requests==2.27.1
         sudo apt-get install python-babel
+        mkdir -p jackalify/locales/ru/LC_MESSAGES
         pybabel compile -i locales/ru/LC_MESSAGES/jackalify.po -o jackalify/locales/ru/LC_MESSAGES/jackalify.mo -l ru
     - name: Run tests
       run: |
