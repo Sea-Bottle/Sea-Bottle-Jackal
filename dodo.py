@@ -3,6 +3,7 @@
 from functools import partial
 import shutil
 import glob
+from doit.tools import create_folder
 
 
 def task_pot():
@@ -30,6 +31,7 @@ def task_translations():
     languages = ['ru', 'en']
     actions = []
     for lang in languages:
+        actions.append((create_folder, [f'jackalify/locales/{lang}/LC_MESSAGES']))
         actions.append(f'pybabel compile -i locales/{lang}/LC_MESSAGES/jackalify.po -o jackalify/locales/{lang}/LC_MESSAGES/jackalify.mo -l {lang}')
     return {
         "actions": actions,
