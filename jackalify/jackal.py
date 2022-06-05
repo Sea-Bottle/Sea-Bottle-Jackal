@@ -10,10 +10,11 @@ from PIL import Image
 from cv2 import cv2
 from tqdm import tqdm
 
-from src.backend.seam_carve import seam_carve
+sys.path.append(os.path.join(sys.path[0], '..'))
 
-project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-translation = gettext.translation('src', localedir=os.path.join(project_path, 'locales'), languages=['en', 'ru'])
+from jackalify.seam_carve import seam_carve  # noqa
+
+translation = gettext.translation('jackalify', localedir=os.path.join(os.path.dirname(__file__), 'locales'), languages=['en', 'ru'])
 _ = translation.gettext
 
 it = 0
@@ -83,7 +84,7 @@ def getProgress():
 
 def main():
     """Run the main function."""
-    message = _('Usage – python3 jackalify.py input_image_path output_video_path')
+    message = _('Usage – python jackalify.py input_image_path output_video_path')
     if len(sys.argv) != 3:
         raise RuntimeError(message)
 

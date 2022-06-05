@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-15 15:26+0300\n"
+"POT-Creation-Date: 2022-06-05 16:06+0300\n"
 "PO-Revision-Date: 2022-05-15 15:27+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -18,31 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: src/backend/jackalify.py:75
-msgid "Usage – python3 jackalify.py input_image_path output_video_path"
-msgstr "Usage – python3 jackalify.py input_image_path output_video_path"
+#: jackalify/jackal.py:87
+msgid "Usage – python jackalify.py input_image_path output_video_path"
+msgstr "Usage – python jackalify.py input_image_path output_video_path"
 
-#: src/fastapi/templates/main_form.html:7
+#: jackalify/templates/main_form.html:7
 msgid "Sea Bottle Jackal"
 msgstr "Sea Bottle Jackal"
 
-#: src/fastapi/templates/main_form.html:11
+#: jackalify/templates/main_form.html:11
 msgid "Jackal Incorporated"
 msgstr "Jackal Incorporated"
 
-#: src/fastapi/templates/main_form.html:14
+#: jackalify/templates/main_form.html:14
 msgid "Choose picture"
 msgstr "Choose picture"
 
-#: src/fastapi/templates/main_form.html:16
+#: jackalify/templates/main_form.html:16
 msgid "Jackalify picture!"
 msgstr "Jackalify picture!"
 
-#: src/fastapi/templates/main_form.html:28
+#: jackalify/templates/main_form.html:28
 msgid "Download GIF"
 msgstr "Download GIF"
 
-#: src/fastapi/templates/main_form.html:29
+#: jackalify/templates/main_form.html:29
 msgid "Download jackalified photo"
 msgstr "Download jackalified photo"
 

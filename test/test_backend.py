@@ -5,8 +5,8 @@ from copy import deepcopy
 import cv2
 import numpy as np
 
-from src.backend.jackalify import jackalify
-from src.backend.seam_carve import horizontal_shrink, vertical_shrink, shrink, seam_carve
+from jackalify.jackal import jackalify
+from jackalify.seam_carve import horizontal_shrink, vertical_shrink, shrink, seam_carve
 
 
 class TestBackend(unittest.TestCase):
