@@ -14,7 +14,7 @@ sys.path.append(os.path.join(sys.path[0], '..'))
 
 from jackalify.seam_carve import seam_carve  # noqa
 
-translation = gettext.translation('jackalify', localedir=os.path.join(os.path.dirname(__file__), 'locales'), languages=['ru'])
+translation = gettext.translation('jackalify', localedir=os.path.join(os.path.dirname(__file__), 'locales'), languages=['en', 'ru'])
 _ = translation.gettext
 
 it = 0

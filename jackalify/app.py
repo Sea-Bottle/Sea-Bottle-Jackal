@@ -21,7 +21,7 @@ app.mount('/static', StaticFiles(directory=os.path.join(fastapi_path, 'static'))
 working_dir = os.path.join(fastapi_path, 'static', 'working')
 os.makedirs(working_dir, exist_ok=True)
 
-translation = gettext.translation('jackalify', localedir=os.path.abspath(os.path.join(fastapi_path, "locales")), languages=['ru'])
+translation = gettext.translation('jackalify', localedir=os.path.abspath(os.path.join(fastapi_path, "locales")), languages=['en', 'ru'])
 templates.env.install_gettext_translations(translation)
 
 picture = None
