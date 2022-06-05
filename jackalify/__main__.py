@@ -61,7 +61,7 @@ if __name__ == '__main__':
         if len(sys.argv) > 2:
             parser.error(_("-w must be a single argument!"))
         else:
-            script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "main.py"))
+            script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "app.py"))
             subprocess.run(["python", script_path])
     elif args.input_path:
         if args.output_path:
@@ -76,7 +76,7 @@ if __name__ == '__main__':
                 jackalify(args.input_path, video_path=args.output_path)
             else:
                 if not args.output_path.lower().endswith(('.png', '.jpg', '.jpeg')):
-                    parser.error(_(f"Output name should end with '.png', '.jpg' or '.jpeg'!"))
+                    parser.error(_("Output name should end with '.png', '.jpg' or '.jpeg'!"))
                 jackalify(args.input_path, out_image_path=args.output_path)
         else:
             path, extention = os.path.splitext(args.input_path)
