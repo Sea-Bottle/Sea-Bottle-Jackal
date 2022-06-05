@@ -15,6 +15,7 @@ Welcome to Sea Bottle Jackal's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   main
    app
    jackal
    seam_carve
