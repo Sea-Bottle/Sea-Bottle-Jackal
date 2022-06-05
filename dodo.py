@@ -72,12 +72,12 @@ def task_unittest():
 def task_style():
     """Check style against flake8."""
     return {
-        "actions": ['flake8 --extend-ignore=E501 src'],
+        "actions": ['flake8 --extend-ignore=E501 jackalify'],
     }
 
 
 def task_docstyle():
     """Check docstrings against pydocstyle."""
     return {
-        "actions": ['pydocstyle src'],
+        "actions": ['pydocstyle jackalify'],
     }
