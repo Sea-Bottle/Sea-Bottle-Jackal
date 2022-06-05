@@ -1,1 +1,1 @@
-"""jackalify module."""
+"""Jackalify module."""
