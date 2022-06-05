@@ -20,9 +20,9 @@ def is_valid_file(parser: argparse.ArgumentParser, arg: str) -> str:
     """
     path, extention = os.path.splitext(arg)
     if not os.path.exists(arg):
-        parser.error(_(f"The file {arg} does not exist!"))
+        parser.error(str.format(_("The file {} does not exist!"), arg))
     elif extention.lower() not in ['.png', '.jpg', '.jpeg']:
-        parser.error(_(f"Wrong file extension '{extention}'! Try '.png', '.jpg', or '.jpeg' file!"))
+        parser.error(str.format(_("Wrong file extension '{}'! Try '.png', '.jpg', or '.jpeg' file!"), extention))
     else:
         return arg
 
@@ -68,7 +68,7 @@ if __name__ == '__main__':
                 args.output_path = f"{path}_jackalified{extention}"
             if args.gif:
                 if not args.output_path.lower().endswith(".gif"):
-                    parser.error(_(f"Output name should end with '.gif'!"))
+                    parser.error(_("Output name should end with '.gif'!"))
                 jackalify(args.input_path, video_path=args.output_path)
             else:
                 if not args.output_path.lower().endswith(('.png', '.jpg', '.jpeg')):
