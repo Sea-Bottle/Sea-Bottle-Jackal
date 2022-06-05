@@ -62,7 +62,7 @@ if __name__ == '__main__':
             parser.error(_("-w must be a single argument!"))
         else:
             script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "main.py"))
-            subprocess.run(["python3", script_path])
+            subprocess.run(["python", script_path])
     elif args.input_path:
         if args.output_path:
             if args.input_path == args.output_path:
