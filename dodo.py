@@ -81,3 +81,11 @@ def task_docstyle():
     return {
         "actions": ['pydocstyle jackalify'],
     }
+
+
+def task_wheel():
+    """Create binary wheel distribution."""
+    return {
+        "actions": ['python -m build -w'],
+        "task_dep": ['translations'],
+    }
