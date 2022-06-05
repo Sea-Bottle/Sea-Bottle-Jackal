@@ -20,9 +20,9 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 
 #: jackalify/jackal.py:87
-msgid "Usage – python3 jackalify.py input_image_path output_video_path"
+msgid "Usage – python jackalify.py input_image_path output_video_path"
 msgstr ""
-"Использование – python3 jackalify.py путь_до_входного_изображения "
+"Использование – python jackalify.py путь_до_входного_изображения "
 "путь_для_полученного_видео"
 
 #: jackalify/templates/main_form.html:7

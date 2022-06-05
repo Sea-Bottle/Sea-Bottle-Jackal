@@ -84,7 +84,7 @@ def getProgress():
 
 def main():
     """Run the main function."""
-    message = _('Usage – python3 jackalify.py input_image_path output_video_path')
+    message = _('Usage – python jackalify.py input_image_path output_video_path')
     if len(sys.argv) != 3:
         raise RuntimeError(message)
 

@@ -19,8 +19,8 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 
 #: jackalify/jackal.py:87
-msgid "Usage – python3 jackalify.py input_image_path output_video_path"
-msgstr "Usage – python3 jackalify.py input_image_path output_video_path"
+msgid "Usage – python jackalify.py input_image_path output_video_path"
+msgstr "Usage – python jackalify.py input_image_path output_video_path"
 
 #: jackalify/templates/main_form.html:7
 msgid "Sea Bottle Jackal"
