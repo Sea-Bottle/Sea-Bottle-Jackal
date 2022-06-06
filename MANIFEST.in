@@ -1,1 +1,1 @@
-include docs/* docs/_static/*
+include docs/* docs/_static/* examples/* dodo.py Pipfile.lock Pipfile
