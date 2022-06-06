@@ -5,6 +5,8 @@ import shutil
 import glob
 from doit.tools import create_folder
 
+DOIT_CONFIG = {'default_tasks': ['html', 'test', 'wheel', 'source']}
+
 
 def task_pot():
     """Re-create .pot ."""
@@ -85,24 +87,20 @@ def task_docstyle():
     }
 
 
-def task_gitclean():
-    """Clean all generated files not tracked by GIT."""
-    return {
-            'actions': ['git clean -xdf'],
-           }
-
-
 def task_wheel():
     """Create binary wheel distribution."""
     return {
         "actions": ['python -m build -w'],
         "task_dep": ['translations'],
+        "targets": glob.glob("dist/*.whl") if glob.glob("dist/*.whl") else ['.whl'],
+        "clean": True,
     }
 
 
-def task_wheel():
+def task_source():
     """Create source distribution."""
     return {
         "actions": ['python -m build -s'],
-        "task_dep": ['gitclean'],
+        "targets": glob.glob("dist/*.tar.gz") if glob.glob("dist/*.tar.gz") else ['.tar.gz'],
+        "clean": True,
     }
