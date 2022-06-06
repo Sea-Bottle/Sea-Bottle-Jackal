@@ -8,7 +8,8 @@ import gettext
 
 from jackalify.jackal import jackalify
 
-translation = gettext.translation('jackalify', localedir=os.path.join(os.path.dirname(__file__), 'locales'), languages=['ru'])
+project_dir = os.path.dirname(__file__)
+translation = gettext.translation('jackalify', localedir=os.path.join(project_dir, 'locales'), languages=['en', 'ru'])
 _ = translation.gettext
 
 
@@ -32,6 +33,7 @@ def is_valid_file(parser: argparse.ArgumentParser, arg: str) -> str:
 
 
 def main():
+    """CLI functionality."""
     parser = argparse.ArgumentParser(description=_('Jackalifying algorithm'))
     parser.add_argument(
         '-w', '--web',

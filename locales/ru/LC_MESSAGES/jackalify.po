@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-06 17:21+0300\n"
+"POT-Creation-Date: 2022-06-06 17:51+0300\n"
 "PO-Revision-Date: 2022-05-15 19:01+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -19,57 +19,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.1\n"
 
-#: jackalify/__init__.py:27
+#: jackalify/__init__.py:28
 msgid "The file {} does not exist!"
 msgstr "Файл {} не существует!"
 
-#: jackalify/__init__.py:29
+#: jackalify/__init__.py:30
 msgid "Wrong file extension '{}'! Try '.png', '.jpg', or '.jpeg' file!"
 msgstr ""
 "Неверное расширение файла '{}'! Используйте '.png', '.jpg', или '.jpeg' "
 "файл"
 
-#: jackalify/__init__.py:35
+#: jackalify/__init__.py:37
 msgid "Jackalifying algorithm"
 msgstr "Алгоритм зашакаливания"
 
-#: jackalify/__init__.py:39
+#: jackalify/__init__.py:41
 msgid "run fastapi server interface"
 msgstr "запуск серверного интерфейса fastapi"
 
-#: jackalify/__init__.py:44
+#: jackalify/__init__.py:46
 msgid "create jackalified gif instead of picture"
 msgstr "создать зашакаленную gif вместо картинки"
 
-#: jackalify/__init__.py:50
+#: jackalify/__init__.py:52
 msgid "picture you want to jackalify"
 msgstr "картинка, которую вы хотите зашакалить"
 
-#: jackalify/__init__.py:57
+#: jackalify/__init__.py:59
 msgid "path to save jackalified instance"
 msgstr "путь для сохранения зашакаленной сущности"
 
-#: jackalify/__init__.py:62
+#: jackalify/__init__.py:64
 msgid "-w must be a single argument!"
 msgstr "-w должен быть единственным аргументом!"
 
-#: jackalify/__init__.py:70
+#: jackalify/__init__.py:72
 msgid "Output file shouldn't be gif!"
 msgstr "Выходной файл не должен быть формата gif!"
 
-#: jackalify/__init__.py:75
+#: jackalify/__init__.py:77
 msgid "Output name should end with '.gif'!"
 msgstr "Имя выходного файла должно заканчиваться на '.gif'!"
 
-#: jackalify/__init__.py:79
+#: jackalify/__init__.py:81
 msgid "Output name should end with '.png', '.jpg' or '.jpeg'!"
 msgstr "Имя выходного файла должно заканчиваться на '.png', '.jpg', или '.jpeg'!"
 
-#: jackalify/__init__.py:90
+#: jackalify/__init__.py:92
 msgid "No input path given!"
 msgstr "Нет входного файла!"
 
-#: jackalify/jackal.py:87
+#: jackalify/jackal.py:86
 msgid "Usage – python jackalify.py input_image_path output_video_path"
 msgstr ""
 "Использование – python jackalify.py путь_до_входного_изображения "

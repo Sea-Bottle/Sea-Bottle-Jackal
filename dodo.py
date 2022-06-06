@@ -3,7 +3,9 @@
 from functools import partial
 import shutil
 import glob
+import os
 from doit.tools import create_folder
+from doit.task import clean_targets
 
 DOIT_CONFIG = {'default_tasks': ['html', 'test', 'wheel', 'source']}
 
@@ -60,7 +62,7 @@ def task_html():
 def task_test():
     """Perform all tests."""
     return {
-        "actions": ['python -m unittest -v -f test/*.py'],
+        "actions": [],
         "task_dep": ["unittest", "style", "docstyle"],
     }
 
@@ -76,7 +78,7 @@ def task_unittest():
 def task_style():
     """Check style against flake8."""
     return {
-        "actions": ['flake8 --extend-ignore=E501 jackalify'],
+        "actions": ['flake8 --max-line-length=120 jackalify'],
     }
 
 
@@ -87,20 +89,34 @@ def task_docstyle():
     }
 
 
+def rm_dir(dir):
+    """Remove dir if empty, do nothing if not"""
+    try:
+        os.rmdir(dir)
+    except:
+        pass
+
+
 def task_wheel():
     """Create binary wheel distribution."""
+    clean_dist = partial(rm_dir, 'dist')
+    clean_build = partial(shutil.rmtree, 'build')
+    clean_egg = partial(shutil.rmtree, 'jackalify.egg-info')
     return {
         "actions": ['python -m build -w'],
+        "verbosity": 2,
         "task_dep": ['translations'],
         "targets": glob.glob("dist/*.whl") if glob.glob("dist/*.whl") else ['.whl'],
-        "clean": True,
+        "clean": [clean_targets, clean_dist, clean_build, clean_egg],
     }
 
 
 def task_source():
     """Create source distribution."""
+    clean_dist = partial(rm_dir, 'dist')
     return {
         "actions": ['python -m build -s'],
+        "verbosity": 2,
         "targets": glob.glob("dist/*.tar.gz") if glob.glob("dist/*.tar.gz") else ['.tar.gz'],
-        "clean": True,
+        "clean": [clean_targets, clean_dist],
     }

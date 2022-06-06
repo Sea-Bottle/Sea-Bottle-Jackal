@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-06 17:21+0300\n"
+"POT-Creation-Date: 2022-06-06 17:51+0300\n"
 "PO-Revision-Date: 2022-05-15 15:27+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -18,55 +18,55 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.1\n"
 
-#: jackalify/__init__.py:27
+#: jackalify/__init__.py:28
 msgid "The file {} does not exist!"
-msgstr ""
+msgstr "The file {} does not exist!"
 
-#: jackalify/__init__.py:29
+#: jackalify/__init__.py:30
 msgid "Wrong file extension '{}'! Try '.png', '.jpg', or '.jpeg' file!"
-msgstr ""
+msgstr "Wrong file extension '{}'! Try '.png', '.jpg', or '.jpeg' file!"
 
-#: jackalify/__init__.py:35
+#: jackalify/__init__.py:37
 msgid "Jackalifying algorithm"
-msgstr ""
+msgstr "Jackalifying algorithm"
 
-#: jackalify/__init__.py:39
+#: jackalify/__init__.py:41
 msgid "run fastapi server interface"
-msgstr ""
+msgstr "run fastapi server interface"
 
-#: jackalify/__init__.py:44
+#: jackalify/__init__.py:46
 msgid "create jackalified gif instead of picture"
-msgstr ""
+msgstr "create jackalified gif instead of picture"
 
-#: jackalify/__init__.py:50
+#: jackalify/__init__.py:52
 msgid "picture you want to jackalify"
-msgstr ""
+msgstr "picture you want to jackalify"
 
-#: jackalify/__init__.py:57
+#: jackalify/__init__.py:59
 msgid "path to save jackalified instance"
-msgstr ""
+msgstr "path to save jackalified instance"
 
-#: jackalify/__init__.py:62
+#: jackalify/__init__.py:64
 msgid "-w must be a single argument!"
-msgstr ""
+msgstr "-w must be a single argument!"
 
-#: jackalify/__init__.py:70
+#: jackalify/__init__.py:72
 msgid "Output file shouldn't be gif!"
-msgstr ""
+msgstr "Output file shouldn't be gif!"
 
-#: jackalify/__init__.py:75
+#: jackalify/__init__.py:77
 msgid "Output name should end with '.gif'!"
-msgstr ""
+msgstr "Output name should end with '.gif'!"
 
-#: jackalify/__init__.py:79
+#: jackalify/__init__.py:81
 msgid "Output name should end with '.png', '.jpg' or '.jpeg'!"
-msgstr ""
+msgstr "Output name should end with '.png', '.jpg' or '.jpeg'!"
 
-#: jackalify/__init__.py:90
+#: jackalify/__init__.py:92
 msgid "No input path given!"
-msgstr ""
+msgstr "No input path given!"
 
-#: jackalify/jackal.py:87
+#: jackalify/jackal.py:86
 msgid "Usage – python jackalify.py input_image_path output_video_path"
 msgstr "Usage – python jackalify.py input_image_path output_video_path"
 
