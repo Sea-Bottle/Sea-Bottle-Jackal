@@ -12,15 +12,13 @@ pillow = "*"
 python-multipart = "*"
 uvicorn = "*"
 jinja2 = "*"
-babel = "*"
 
 [dev-packages]
 sphinx = "*"
 doit = "*"
-pycodestyle = "*"
 build = "*"
 flake8 = "*"
 pydocstyle = "*"
+babel = "*"
 
 [requires]
-python_version = "3.8"
