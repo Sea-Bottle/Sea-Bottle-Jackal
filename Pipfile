@@ -20,5 +20,6 @@ build = "*"
 flake8 = "*"
 pydocstyle = "*"
 babel = "*"
+twine = "*"
 
 [requires]
