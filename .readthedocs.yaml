@@ -6,5 +6,5 @@ build:
     python: "3.8"
   jobs:
     pre_install:
-      - pip install doit
+      - pip install doit pybabel
       - doit translations
