@@ -14,12 +14,6 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
 
-import mock
- 
-MOCK_MODULES = ['numpy', 'cv2', 'tqdm', 'gettext', 'aiofiles', 'fastapi', 'fastapi.responses', 'fastapi.staticfiles', 'starlette.requests', 'starlette.templating']
-for mod_name in MOCK_MODULES:
-    sys.modules[mod_name] = mock.Mock()
-
 
 # -- Project information -----------------------------------------------------
 
@@ -61,5 +55,5 @@ html_static_path = ['_static']
 html_css_files = ['style.css']
 
 master_doc = 'index'
-# language = 'en'
-# locale_dirs = [os.path.join('jackalify', 'locales')]
+language = 'en'
+locale_dirs = [os.path.join('jackalify', 'locales')]
