@@ -21,5 +21,6 @@ flake8 = "*"
 pydocstyle = "*"
 babel = "*"
 twine = "*"
+mock = "*"
 
 [requires]
