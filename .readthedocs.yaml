@@ -6,5 +6,5 @@ build:
     python: "3.8"
   jobs:
     pre_install:
-      - pip -y install doit
+      - pip install -y doit
       - doit translations
