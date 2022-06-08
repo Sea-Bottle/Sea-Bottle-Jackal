@@ -16,7 +16,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 import mock
  
-MOCK_MODULES = ['numpy', 'cv2', 'tqdm', 'gettext', 'aiofiles', 'fastapi']
+MOCK_MODULES = ['numpy', 'cv2', 'tqdm', 'gettext', 'aiofiles', 'fastapi', 'fastapi.responses', 'fastapi.staticfiles', 'starlette.requests', 'starlette.templating']
 for mod_name in MOCK_MODULES:
     sys.modules[mod_name] = mock.Mock()
 
