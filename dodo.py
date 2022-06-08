@@ -13,7 +13,7 @@ DOIT_CONFIG = {'default_tasks': ['html', 'test', 'wheel', 'source']}
 def task_pot():
     """Re-create .pot ."""
     return {
-        "actions": ['pybabel extract -F locales/babel-mapping.ini -o jackalify.pot jackalify'],
+        "actions": ['python3 -m pybabel extract -F locales/babel-mapping.ini -o jackalify.pot jackalify'],
         "file_dep": glob.glob('**/*.py', recursive=True),
         "targets": ['jackalify.pot'],
         "clean": True,
@@ -23,7 +23,7 @@ def task_pot():
 def task_po():
     """Update translations."""
     return {
-        "actions": ['pybabel update -D jackalify -d locales -i jackalify.pot'],
+        "actions": ['python3 -m pybabel update -D jackalify -d locales -i jackalify.pot'],
         "file_dep": ['jackalify.pot'],
         "task_dep": ['pot'],
         "targets": glob.glob("locales/**/*.po", recursive=True),
@@ -36,7 +36,7 @@ def task_translations():
     actions = []
     for lang in languages:
         actions.append((create_folder, [f'jackalify/locales/{lang}/LC_MESSAGES']))
-        actions.append(f'pybabel compile -i locales/{lang}/LC_MESSAGES/jackalify.po -o jackalify/locales/{lang}/LC_MESSAGES/jackalify.mo -l {lang}')
+        actions.append(f'python3 -m pybabel compile -i locales/{lang}/LC_MESSAGES/jackalify.po -o jackalify/locales/{lang}/LC_MESSAGES/jackalify.mo -l {lang}')
     return {
         "actions": actions,
         "file_dep": glob.glob("locales/**/*.po", recursive=True),
