@@ -39,9 +39,9 @@ def task_translations():
         actions.append(f'python3 -m babel compile -i locales/{lang}/LC_MESSAGES/jackalify.po -o jackalify/locales/{lang}/LC_MESSAGES/jackalify.mo -l {lang}')
     return {
         "actions": actions,
-        "file_dep": glob.glob("locales/**/*.po", recursive=True),
-        "task_dep": ['po'],
-        "targets": glob.glob("jackalify/locales/**/*.mo", recursive=True) if glob.glob("jackalify/locales/**/*.mo", recursive=True) else ['.mo'],
+        # "file_dep": glob.glob("locales/**/*.po", recursive=True),
+        # "task_dep": ['po'],
+        # "targets": glob.glob("jackalify/locales/**/*.mo", recursive=True) if glob.glob("jackalify/locales/**/*.mo", recursive=True) else ['.mo'],
         "clean": True,
     }
 
