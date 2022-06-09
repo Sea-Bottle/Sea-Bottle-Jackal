@@ -139,6 +139,6 @@ def task_source():
 def task_release():
     """Release wheel and source distribution to pypi"""
     return {
-        "actions": ["python -m twine upload --repository pypi --config-file .pypirc dist/*"],
+        "actions": ["python -m twine upload --repository pypi dist/*"],
         "task_dep": ['wheel', 'source']
     }
