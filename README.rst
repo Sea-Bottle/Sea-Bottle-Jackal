@@ -15,14 +15,14 @@ Sea-Bottle-Jackal
 
 До:
 
-.. figure:: examples/wolf.png
+.. figure:: https://raw.githubusercontent.com/Sea-Bottle/Sea-Bottle-Jackal/master/examples/wolf.png
        :scale: 70 %
        :align: center
 
 
 После:
 
-.. figure:: examples/wolf.gif
+.. image:: https://github.com/Sea-Bottle/Sea-Bottle-Jackal/raw/master/examples/wolf.gif
        :scale: 70 %
        :align: center
 
@@ -44,21 +44,21 @@ Sea-Bottle-Jackal
 
 Страница загрузки файла:
 
-.. figure:: examples/main.png
+.. figure:: https://raw.githubusercontent.com/Sea-Bottle/Sea-Bottle-Jackal/master/examples/main.png
        :scale: 70 %
        :align: center
 
 
 Страница с отслеживанием прогресса создания результата:
 
-.. figure:: examples/progress.png
+.. figure:: https://raw.githubusercontent.com/Sea-Bottle/Sea-Bottle-Jackal/master/examples/progress.png
        :scale: 70 %
        :align: center
 
 
 Страница с результатом и возможностью скачивания:
 
-.. figure:: examples/result.png
+.. figure:: https://raw.githubusercontent.com/Sea-Bottle/Sea-Bottle-Jackal/master/examples/result.png
        :scale: 70 %
        :align: center
 
