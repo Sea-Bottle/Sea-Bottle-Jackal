@@ -18,7 +18,7 @@ sphinx = "==5.0.1"
 doit = "==0.36.0"
 build = "==0.8.0"
 flake8 = "==4.0.1"
-pydocstyle = "====6.1.1"
+pydocstyle = "==6.1.1"
 babel = "==2.10.1"
 twine = "==4.0.1"
 
