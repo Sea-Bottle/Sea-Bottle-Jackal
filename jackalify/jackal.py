@@ -36,8 +36,8 @@ def jackalify(in_image_path: str, video_path: Optional[str] = None, out_image_pa
     if not video_path and not out_image_path:
         raise AttributeError("At least one of output paths should be defined!")
 
-    image = cv2.cv2.cvtColor(cv2.cv2.imread(in_image_path), cv2.cv2.COLOR_BGR2RGB)
-    image = cv2.cv2.resize(
+    image = cv2.cvtColor(cv2.imread(in_image_path), cv2.COLOR_BGR2RGB)
+    image = cv2.resize(
         image,
         (
             image.shape[1] * 512 // max(image.shape[:2]),

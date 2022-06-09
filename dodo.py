@@ -139,6 +139,6 @@ def task_source():
 def task_release():
     """Release wheel and source distribution to test.pypi"""
     return {
-        "actions": ["python -m twine upload --repository testpypi dist/* -u __token__ -p pypi-AgENdGVzdC5weXBpLm9yZwIkODEwNTgwNjMtMGFlMi00NzBkLWJmMDktODk5OGZmMDQwZTM2AAIleyJwZXJtaXNzaW9ucyI6ICJ1c2VyIiwgInZlcnNpb24iOiAxfQAABiD7iVC9pxV4xVOYVA-13zKjtIjfUQtrgKk-3ocCqWkY2g"],
+        "actions": ["python -m twine upload --repository pypi --config-file .pypirc dist/*"],
         "task_dep": ['wheel', 'source']
     }
