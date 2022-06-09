@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """CI tasks."""
+from codecs import ignore_errors
 from functools import partial
 import shutil
 import glob
@@ -7,7 +8,7 @@ import os
 from doit.tools import create_folder
 from doit.task import clean_targets
 
-DOIT_CONFIG = {'default_tasks': ['html', 'test', 'wheel', 'source']}
+DOIT_CONFIG = {'default_tasks': ['translations']}
 
 
 def task_pot():
@@ -43,6 +44,18 @@ def task_translations():
         "task_dep": ['po'],
         "targets": glob.glob("jackalify/locales/**/*.mo", recursive=True) if glob.glob("jackalify/locales/**/*.mo", recursive=True) else ['.mo'],
         "clean": True,
+    }
+
+
+def task_translations_ru():
+    """Compile translations ru."""
+    languages = ['ru']
+    actions = []
+    for lang in languages:
+        actions.append((create_folder, [f'jackalify/locales/{lang}/LC_MESSAGES']))
+        actions.append(f'pybabel compile -i locales/{lang}/LC_MESSAGES/jackalify.po -o jackalify/locales/{lang}/LC_MESSAGES/jackalify.mo -l {lang}')
+    return {
+        "actions": actions,
     }
 
 
@@ -100,8 +113,8 @@ def rm_dir(dir):
 def task_wheel():
     """Create binary wheel distribution."""
     clean_dist = partial(rm_dir, 'dist')
-    clean_build = partial(shutil.rmtree, 'build')
-    clean_egg = partial(shutil.rmtree, 'jackalify.egg-info')
+    clean_build = partial(shutil.rmtree, 'build', ignore_errors=True)
+    clean_egg = partial(shutil.rmtree, 'jackalify.egg-info', ignore_errors=True)
     return {
         "actions": ['python -m build -w'],
         "verbosity": 2,
@@ -114,11 +127,12 @@ def task_wheel():
 def task_source():
     """Create source distribution."""
     clean_dist = partial(rm_dir, 'dist')
+    clean_egg = partial(shutil.rmtree, 'jackalify.egg-info', ignore_errors=True)
     return {
         "actions": ['python -m build -s'],
         "verbosity": 2,
         "targets": glob.glob("dist/*.tar.gz") if glob.glob("dist/*.tar.gz") else ['.tar.gz'],
-        "clean": [clean_targets, clean_dist],
+        "clean": [clean_targets, clean_dist, clean_egg],
     }
 
 
