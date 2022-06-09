@@ -1,6 +1,6 @@
 Command line interface
 ======================
 
-.. automodule:: jackalify.jackal
+.. automodule:: jackalify.__init__
    :members:
    :undoc-members:

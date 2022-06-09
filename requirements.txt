@@ -1,11 +1,9 @@
+-i https://pypi.org/simple
 aiofiles==0.8.0
-fastapi==0.75.1
-Jinja2==3.1.1
-numpy==1.22.3
+fastapi==0.78.0
+jinja2==3.1.2
 opencv-python==4.5.5.64
-Pillow==9.1.0
-pycodestyle==2.8.0
-pydocstyle==6.1.1
+pillow==9.1.1
 python-multipart==0.0.5
 tqdm==4.64.0
 uvicorn==0.17.6

@@ -1,0 +1,6 @@
+include dodo.py 
+include Pipfile.lock Pipfile requirements.txt requirements-dev.txt
+include docs/* docs/_static/* 
+include test/__init__.py test/data/*
+include locales/* locales/*/*/*
+include examples/* 

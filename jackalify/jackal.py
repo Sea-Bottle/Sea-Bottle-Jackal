@@ -7,14 +7,13 @@ from typing import Optional
 
 import numpy as np
 from PIL import Image
-from cv2 import cv2
+import cv2
 from tqdm import tqdm
-
-sys.path.append(os.path.join(sys.path[0], '..'))
 
 from jackalify.seam_carve import seam_carve  # noqa
 
-translation = gettext.translation('jackalify', localedir=os.path.join(os.path.dirname(__file__), 'locales'), languages=['en', 'ru'])
+project_dir = os.path.dirname(__file__)
+translation = gettext.translation('jackalify', localedir=os.path.join(project_dir, 'locales'), languages=['en', 'ru'])
 _ = translation.gettext
 
 it = 0

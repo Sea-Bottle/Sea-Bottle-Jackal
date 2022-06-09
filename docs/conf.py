@@ -56,4 +56,4 @@ html_css_files = ['style.css']
 
 master_doc = 'index'
 language = 'en'
-locale_dirs = [os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'jackalify', 'locales'))]
+locale_dirs = [os.path.join('jackalify', 'locales')]
